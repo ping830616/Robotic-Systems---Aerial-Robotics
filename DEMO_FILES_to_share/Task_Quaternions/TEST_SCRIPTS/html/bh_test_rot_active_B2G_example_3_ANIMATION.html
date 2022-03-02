@@ -1,0 +1,261 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Explore ACTIVE rotations applied to a BODY-FIXED frame</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-03-21"><meta name="DC.source" content="bh_test_rot_active_B2G_example_3_ANIMATION.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Explore ACTIVE rotations applied to a BODY-FIXED frame</h1><!--introduction--><p><tt>Bradley Horton : 01-Mar-2016, <a href="mailto:bradley.horton@mathworks.com.au">bradley.horton@mathworks.com.au</a></tt></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introduction:</a></li><li><a href="#2">Recall our discussion on PASSIVE rotations</a></li><li><a href="#3">Now define what we mean by ACTIVE rotations</a></li><li><a href="#4">Define some geometry(co-ordinates) of a vehicle</a></li><li><a href="#5">Show the vehicle in it's original pose</a></li><li><a href="#6">Define the ACTIVE rotation sequence and ANIMATE</a></li><li><a href="#7">Example #2:  Define the ACTIVE rotation sequence and ANIMATE</a></li></ul></div><h2>Introduction:<a name="1"></a></h2><p>An <b>ACTIVE</b> rotation matrix, moves a point initially defined in it's local <b>B-frame</b>, to a new location.  This new data point is expressed in the co-ordinates of the <b>G-frame</b></p><p>An example of this concept is shown below</p><p><img vspace="5" hspace="5" src="../PICS_DO_NOT_DELETE/bh_PIC_active_rot_z.PNG" alt=""> </p><h2>Recall our discussion on PASSIVE rotations<a name="2"></a></h2><p>Say we start with a G-frame.  We're going to apply 3 LOCAL axes rotations which will result in a newly orientated frame called the B-frame.</p><p>Assume that we apply these 3 successive rotations in the following order:</p><div><ol><li>R1Z occurs 1st about the LOCAL <b>Z</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq14613807413378082246.png" alt="$(\phi)$" style="width:18px;height:15px;">, aka <b>YAW</b></li><li>R2Y occurs 2nd about the LOCAL <b>Y</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq14021614131210806890.png" alt="$(\theta)$" style="width:16px;height:15px;">, aka <b>PITCH</b></li><li>R3X occurs 3rd about the LOCAL <b>X</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq17545654899311027271.png" alt="$(\psi)$" style="width:19px;height:15px;">, aka <b>ROLL</b></li></ol></div><p>We can express a vector defined in the G axis into it's corresponding description in the B axis, using a <b>PASSIVE</b> rotation matrix, ie:</p><p><b><tt>vB = R3X(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq13272108476132555480.png" alt="$\psi_x$" style="width:15px;height:14px;">) * R2Y(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq02089219180286754647.png" alt="$\theta_y$" style="width:12px;height:15px;">) * R1Z(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq04349035906278744823.png" alt="$\phi_z$" style="width:14px;height:14px;">) * vG</tt></b></p><p>OR, in a more compact form as:</p><p><b><tt>vB = bRg * vG</tt></b></p><h2>Now define what we mean by ACTIVE rotations<a name="3"></a></h2><p>Continuing on from the previous section, we can now write:</p><p><b><tt>vG = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq08907392536941098070.png" alt="$R1Z(\phi_z)^{-1}$" style="width:68px;height:17px;">  *  <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq04561652899787112338.png" alt="$R2Y(\theta_y)^{-1}$" style="width:67px;height:18px;">  *  <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq05026786490017023053.png" alt="$R3X(\psi_x)^{-1}$" style="width:72px;height:17px;"> * vB</tt></b></p><p><b><tt>vG = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq11604880086662374105.png" alt="$R1Z(\phi_z)^{T}$" style="width:63px;height:17px;">  *  <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq05282600929691290244.png" alt="$R2Y(\theta_y)^{T}$" style="width:62px;height:17px;">  *  <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq11917244488931248871.png" alt="$R3X(\psi_x)^{T}$" style="width:67px;height:17px;"> * vB</tt></b></p><p><b><tt>vG = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq03647037486898947146.png" alt="$R1Z(-\phi_z)$" style="width:66px;height:15px;">  *  <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq14428828515651404876.png" alt="$R2Y(-\theta_y)$" style="width:65px;height:16px;"> *  <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq04277956800017450688.png" alt="$R3X(-\psi_x)$" style="width:70px;height:15px;"> * vB</tt></b></p><p>If we now define the following <b>ACTIVE</b> rotation matrices:</p><div><ol><li><b><tt>a_R1Z(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq04349035906278744823.png" alt="$\phi_z$" style="width:14px;height:14px;">)   = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq08907392536941098070.png" alt="$R1Z(\phi_z)^{-1}$" style="width:68px;height:17px;"> = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq03932949073601181311.png" alt="$R1Z(- \phi_z)$" style="width:66px;height:15px;"></tt></b></li><li><b><tt>a_R2Y(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq02089219180286754647.png" alt="$\theta_y$" style="width:12px;height:15px;">) = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq04561652899787112338.png" alt="$R2Y(\theta_y)^{-1}$" style="width:67px;height:18px;"> = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq07729988375687593990.png" alt="$R2Y(- \theta_y)$" style="width:65px;height:16px;"></tt></b></li><li><b><tt>a_R3X(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq13272108476132555480.png" alt="$\psi_x$" style="width:15px;height:14px;">) = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq05026786490017023053.png" alt="$R3X(\psi_x)^{-1}$" style="width:72px;height:17px;"> = <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq10245271638273084782.png" alt="$R3X(- \psi_x)$" style="width:70px;height:15px;"></tt></b></li></ol></div><p>Then we can write:</p><p><b><tt>vG =  a_R1Z(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq04349035906278744823.png" alt="$\phi_z$" style="width:14px;height:14px;">)  *  a_R2Y(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq02089219180286754647.png" alt="$\theta_y$" style="width:12px;height:15px;">) *  a_R3(<img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq13272108476132555480.png" alt="$\psi_x$" style="width:15px;height:14px;">) * vB</tt></b></p><p>Or in a more compact form:</p><p><b><tt>vG =  gRb * vB</tt></b></p><p>where it should be clear that:</p><p><b><tt>gRb == <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq15967163106121451158.png" alt="$(bRg)^{-1}$" style="width:48px;height:17px;"> == <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq12823620065755308906.png" alt="$(bRg)^{T}$" style="width:43px;height:17px;"></tt></b></p><h2>Define some geometry(co-ordinates) of a vehicle<a name="4"></a></h2><pre class="codeinput"><span class="comment">% this will be the "toy" system that we'll rotate in space</span>
+veh_OBJ = bh_vehicle_CLS()
+</pre><pre class="codeoutput">
+veh_OBJ = 
+
+  bh_vehicle_CLS with properties:
+
+    FaceAlpha: 1
+          gRb: [3x3 double]
+           XL: [-2 2]
+           YL: [-2 2]
+           ZL: [-2 2]
+      X_b_col: [18x1 double]
+      Y_b_col: [18x1 double]
+      Z_b_col: [18x1 double]
+      X_g_col: [18x1 double]
+      Y_g_col: [18x1 double]
+      Z_g_col: [18x1 double]
+
+</pre><h2>Show the vehicle in it's original pose<a name="5"></a></h2><pre class="codeinput">figure();
+hax(1) = subplot(2,2,1);  veh_OBJ.plot_3D(hax(1));
+hax(2) = subplot(2,2,2);  veh_OBJ.plot_XY(hax(2));
+hax(3) = subplot(2,2,3);  veh_OBJ.plot_XZ(hax(3));
+hax(4) = subplot(2,2,4);  veh_OBJ.plot_YZ(hax(4));
+</pre><img vspace="5" hspace="5" src="bh_test_rot_active_B2G_example_3_ANIMATION_01.png" style="width:560px;height:420px;" alt=""> <h2>Define the ACTIVE rotation sequence and ANIMATE<a name="6"></a></h2><p>We'd like to subject the vehicle to a series of rotations applied to a body fixed co-ordinate frame attached to the vehicle.</p><p>Assume that we apply these 3 successive rotations in the following order:</p><div><ol><li>R1Z occurs 1st about the LOCAL <b>Z</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq14613807413378082246.png" alt="$(\phi)$" style="width:18px;height:15px;">, aka <b>YAW</b></li><li>R2Y occurs 2nd about the LOCAL <b>Y</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq14021614131210806890.png" alt="$(\theta)$" style="width:16px;height:15px;">, aka <b>PITCH</b></li><li>R3X occurs 3rd about the LOCAL <b>X</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq17545654899311027271.png" alt="$(\psi)$" style="width:19px;height:15px;">, aka <b>ROLL</b></li></ol></div><pre class="codeinput">degs_yaw  = 90;
+degs_pitch= 30;
+degs_roll = 60;
+arot_OBJ  = bh_rot_active_B2G_CLS({<span class="string">'D1Z'</span>,<span class="string">'D2Y'</span>,<span class="string">'D3X'</span>}, <span class="keyword">...</span>
+                                  [degs_yaw, degs_pitch, degs_roll], <span class="keyword">...</span>
+                                  <span class="string">'DEGREES'</span>);
+
+desc_str = arot_OBJ.get_description();
+
+<span class="comment">% Let's ANIMATE</span>
+figure();
+hax = axes;
+
+veh_OBJ = veh_OBJ.rotate_and_animate(arot_OBJ, hax);
+
+title(hax, desc_str);
+</pre><img vspace="5" hspace="5" src="bh_test_rot_active_B2G_example_3_ANIMATION_02.png" style="width:560px;height:420px;" alt=""> <h2>Example #2:  Define the ACTIVE rotation sequence and ANIMATE<a name="7"></a></h2><p>We'd like to subject the vehicle to a series of rotations applied to a body fixed co-ordinate frame attached to the vehicle.</p><p>Assume that we apply these 3 successive rotations in the following order:</p><div><ol><li>R1X occurs 1st about the LOCAL <b>X</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq17545654899311027271.png" alt="$(\psi)$" style="width:19px;height:15px;">, aka <b>ROLL</b></li><li>R2Z occurs 2nd about the LOCAL <b>Z</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq14613807413378082246.png" alt="$(\phi)$" style="width:18px;height:15px;">, aka <b>YAW</b></li><li>R3Y occurs 3rd about the LOCAL <b>Y</b> body axis <img src="bh_test_rot_active_B2G_example_3_ANIMATION_eq14021614131210806890.png" alt="$(\theta)$" style="width:16px;height:15px;">, aka <b>PITCH</b></li></ol></div><pre class="codeinput">degs_roll = 45;
+degs_yaw  = 90;
+degs_pitch= 70;
+
+arot_OBJ  = bh_rot_active_B2G_CLS({<span class="string">'D1X'</span>, <span class="string">'D2Z'</span>, <span class="string">'D3Y'</span>}, <span class="keyword">...</span>
+                                  [degs_roll, degs_yaw, degs_pitch], <span class="keyword">...</span>
+                                  <span class="string">'DEGREES'</span>);
+
+desc_str = arot_OBJ.get_description();
+
+<span class="comment">% Let's ANIMATE</span>
+figure();
+hax = axes;
+
+veh_OBJ = veh_OBJ.rotate_and_animate(arot_OBJ, hax);
+
+title(hax, desc_str);
+</pre><img vspace="5" hspace="5" src="bh_test_rot_active_B2G_example_3_ANIMATION_03.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Explore ACTIVE rotations applied to a BODY-FIXED frame
+%
+% |Bradley Horton : 01-Mar-2016, bradley.horton@mathworks.com.au|
+
+%% Introduction:
+% An *ACTIVE* rotation matrix, moves a point initially defined in it's local *B-frame*,
+% to a new location.  This new data point is expressed in the co-ordinates of
+% the *G-frame*
+%
+% An example of this concept is shown below
+% 
+% <<../PICS_DO_NOT_DELETE/bh_PIC_active_rot_z.PNG>>
+% 
+
+%% Recall our discussion on PASSIVE rotations
+% Say we start with a G-frame.  We're going to apply 3 LOCAL axes rotations
+% which will result in a newly orientated frame called the B-frame.
+%
+% Assume that we apply these 3 successive rotations in the following order:
+%
+% # R1Z occurs 1st about the LOCAL *Z* body axis $(\phi)$, aka *YAW*
+% # R2Y occurs 2nd about the LOCAL *Y* body axis $(\theta)$, aka *PITCH*
+% # R3X occurs 3rd about the LOCAL *X* body axis $(\psi)$, aka *ROLL*
+%
+% We can express a vector defined in the G axis into it's corresponding 
+% description in the B axis, using a *PASSIVE* rotation matrix, ie:
+%
+% *|vB = R3X($\psi_x$) * R2Y($\theta_y$) * R1Z($\phi_z$) * vG|* 
+% 
+% OR, in a more compact form as:
+%
+% *|vB = bRg * vG|*
+%
+
+%% Now define what we mean by ACTIVE rotations
+% Continuing on from the previous section, we can now write:
+%
+% *|vG = $R1Z(\phi_z)^{-1}$  *  $R2Y(\theta_y)^{-1}$  *  $R3X(\psi_x)^{-1}$ * vB|*
+%
+% *|vG = $R1Z(\phi_z)^{T}$  *  $R2Y(\theta_y)^{T}$  *  $R3X(\psi_x)^{T}$ * vB|*
+%
+% *|vG = $R1Z(-\phi_z)$  *  $R2Y(-\theta_y)$ *  $R3X(-\psi_x)$ * vB|*
+%
+% If we now define the following *ACTIVE* rotation matrices:
+% 
+% # *|a_R1Z($\phi_z$)   = $R1Z(\phi_z)^{-1}$ = $R1Z(- \phi_z)$|*
+% # *|a_R2Y($\theta_y$) = $R2Y(\theta_y)^{-1}$ = $R2Y(- \theta_y)$|*
+% # *|a_R3X($\psi_x$) = $R3X(\psi_x)^{-1}$ = $R3X(- \psi_x)$|*
+%
+% Then we can write:
+%
+% *|vG =  a_R1Z($\phi_z$)  *  a_R2Y($\theta_y$) *  a_R3($\psi_x$) * vB|*
+%
+% Or in a more compact form:
+%
+% *|vG =  gRb * vB|*
+%
+% where it should be clear that:
+%
+% *|gRb == $(bRg)^{-1}$ == $(bRg)^{T}$|*
+%
+
+%% Define some geometry(co-ordinates) of a vehicle
+
+% this will be the "toy" system that we'll rotate in space
+veh_OBJ = bh_vehicle_CLS()
+
+%% Show the vehicle in it's original pose
+figure();
+hax(1) = subplot(2,2,1);  veh_OBJ.plot_3D(hax(1));
+hax(2) = subplot(2,2,2);  veh_OBJ.plot_XY(hax(2));  
+hax(3) = subplot(2,2,3);  veh_OBJ.plot_XZ(hax(3));  
+hax(4) = subplot(2,2,4);  veh_OBJ.plot_YZ(hax(4));  
+  
+%% Define the ACTIVE rotation sequence and ANIMATE
+% We'd like to subject the vehicle to a series of rotations applied to
+% a body fixed co-ordinate frame attached to the vehicle.
+%
+% Assume that we apply these 3 successive rotations in the following order:
+%
+% # R1Z occurs 1st about the LOCAL *Z* body axis $(\phi)$, aka *YAW*
+% # R2Y occurs 2nd about the LOCAL *Y* body axis $(\theta)$, aka *PITCH*
+% # R3X occurs 3rd about the LOCAL *X* body axis $(\psi)$, aka *ROLL*
+%
+
+degs_yaw  = 90; 
+degs_pitch= 30;
+degs_roll = 60;
+arot_OBJ  = bh_rot_active_B2G_CLS({'D1Z','D2Y','D3X'}, ...
+                                  [degs_yaw, degs_pitch, degs_roll], ...
+                                  'DEGREES');
+                              
+desc_str = arot_OBJ.get_description();
+
+% Let's ANIMATE
+figure();
+hax = axes;
+
+veh_OBJ = veh_OBJ.rotate_and_animate(arot_OBJ, hax);
+
+title(hax, desc_str);
+
+%% Example #2:  Define the ACTIVE rotation sequence and ANIMATE
+% We'd like to subject the vehicle to a series of rotations applied to
+% a body fixed co-ordinate frame attached to the vehicle.
+%
+% Assume that we apply these 3 successive rotations in the following order:
+%
+% # R1X occurs 1st about the LOCAL *X* body axis $(\psi)$, aka *ROLL*
+% # R2Z occurs 2nd about the LOCAL *Z* body axis $(\phi)$, aka *YAW*
+% # R3Y occurs 3rd about the LOCAL *Y* body axis $(\theta)$, aka *PITCH*
+%
+
+degs_roll = 45;
+degs_yaw  = 90; 
+degs_pitch= 70;
+
+arot_OBJ  = bh_rot_active_B2G_CLS({'D1X', 'D2Z', 'D3Y'}, ...
+                                  [degs_roll, degs_yaw, degs_pitch], ...
+                                  'DEGREES');
+
+desc_str = arot_OBJ.get_description();
+                              
+% Let's ANIMATE
+figure();
+hax = axes;
+
+veh_OBJ = veh_OBJ.rotate_and_animate(arot_OBJ, hax);
+
+title(hax, desc_str);
+
+
+##### SOURCE END #####
+--></body></html>

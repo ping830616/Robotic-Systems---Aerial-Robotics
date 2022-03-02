@@ -1,0 +1,390 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Explore PASSIVE rotations and EULER rates</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-04-21"><meta name="DC.source" content="bh_test_rot_passive_G2B_example_3_euler_rates_CONCEPT.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Explore PASSIVE rotations and EULER rates</h1><!--introduction--><p><tt>Bradley Horton : 01-Mar-2016, <a href="mailto:bradley.horton@mathworks.com.au">bradley.horton@mathworks.com.au</a></tt></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introduction:</a></li><li><a href="#2">An example of 3 successive PASSIVE rotations</a></li><li><a href="#3">Create a passive rotation object</a></li><li><a href="#4">Here are the PASSIVE rotation matrices</a></li><li><a href="#5">Explore EULER rates</a></li><li><a href="#6">The total angular velocity expressed in the BODY B frame is therefore</a></li><li><a href="#7">We can write the angular velocity vector as a MATRIX equation</a></li><li><a href="#8">The SINGULARITY between BODY rates and EULER rates</a></li><li><a href="#9">The Euler rates can therefore be written as</a></li><li><a href="#10">We can write the Euler rates vector as a MATRIX equation</a></li></ul></div><h2>Introduction:<a name="1"></a></h2><p>A Passive rotation matrix, converts the co-ordinates of a point expressed in a fixed <b>G-frame</b>, into the co-ordinates of the same point expressed in the new <b>B-frame</b>.</p><p>An example of this concept is shown below</p><p><img vspace="5" hspace="5" src="../PICS_DO_NOT_DELETE/bh_PIC_passive_rot_z.PNG" alt=""> </p><h2>An example of 3 successive PASSIVE rotations<a name="2"></a></h2><p>Say we start with a G-frame.  We're going to apply 3 LOCAL axes rotations which will result in a newly orientated frame called the B-frame.</p><p>Assume that we apply these 3 successive rotations in the following order:</p><div><ol><li>R1Z occurs 1st about the LOCAL <b>Z</b> body axis <img src="bh_test_rot_passive_G2B_example_3_euler_rates_CONCEPT_eq14613807413378082246.png" alt="$(\phi)$" style="width:18px;height:16px;">, aka <b>YAW</b></li><li>R2Y occurs 2nd about the LOCAL <b>Y</b> body axis <img src="bh_test_rot_passive_G2B_example_3_euler_rates_CONCEPT_eq14021614131210806890.png" alt="$(\theta)$" style="width:16px;height:16px;">, aka <b>PITCH</b></li><li>R3X occurs 3rd about the LOCAL <b>X</b> body axis <img src="bh_test_rot_passive_G2B_example_3_euler_rates_CONCEPT_eq17545654899311027271.png" alt="$(\psi)$" style="width:19px;height:16px;">, aka <b>ROLL</b></li></ol></div><p>We can express a vector defined in the G axis into it's corresponding description in the B axis, using a <b>PASSIVE</b> rotation matrix, ie:</p><p><b><tt>vB = R3X(<img src="bh_test_rot_passive_G2B_example_3_euler_rates_CONCEPT_eq13272108476132555480.png" alt="$\psi_x$" style="width:15px;height:14px;">) * R2Y(<img src="bh_test_rot_passive_G2B_example_3_euler_rates_CONCEPT_eq02089219180286754647.png" alt="$\theta_y$" style="width:12px;height:16px;">) * R1Z(<img src="bh_test_rot_passive_G2B_example_3_euler_rates_CONCEPT_eq04349035906278744823.png" alt="$\phi_z$" style="width:14px;height:14px;">) * vG</tt></b></p><p>OR, in a more compact form as:</p><p><b><tt>vB = bRg * vG</tt></b></p><h2>Create a passive rotation object<a name="3"></a></h2><pre class="codeinput">syms <span class="string">phi</span> <span class="string">theta</span> <span class="string">psi</span>
+OBJ_P = bh_rot_passive_G2B_CLS({<span class="string">'D1Z'</span>, <span class="string">'D2Y'</span>, <span class="string">'D3X'</span>}, [phi, theta, psi], <span class="string">'SYM'</span>)
+</pre><pre class="codeoutput">
+OBJ_P = 
+
+  bh_rot_passive_G2B_CLS with properties:
+
+        ang_units: SYM
+    num_rotations: 3
+          dir_1st: D1Z
+          dir_2nd: D2Y
+          dir_3rd: D3X
+          ang_1st: [1x1 sym]
+          ang_2nd: [1x1 sym]
+          ang_3rd: [1x1 sym]
+
+</pre><h2>Here are the PASSIVE rotation matrices<a name="4"></a></h2><pre class="codeinput">R1 = OBJ_P.get_R1
+R2 = OBJ_P.get_R2
+R3 = OBJ_P.get_R3
+</pre><pre class="codeoutput"> 
+R1 =
+ 
+[  cos(phi), sin(phi), 0]
+[ -sin(phi), cos(phi), 0]
+[         0,        0, 1]
+ 
+ 
+R2 =
+ 
+[ cos(theta), 0, -sin(theta)]
+[          0, 1,           0]
+[ sin(theta), 0,  cos(theta)]
+ 
+ 
+R3 =
+ 
+[ 1,         0,        0]
+[ 0,  cos(psi), sin(psi)]
+[ 0, -sin(psi), cos(psi)]
+ 
+</pre><h2>Explore EULER rates<a name="5"></a></h2><p>As we apply these local frame rotations, we can represent the angular rates of the rotating rames in the LOCAL frame co-ordinates.  These local frame co-ordinates can then be converted into co-ordinates expressed in the final B frame.</p><p>For example, during each of the local axes rotations we can think of there being a START frame and an END frame:</p><pre>               START      END           Angular rate vector
+               frame      frame         associated with rotation
+  -------------------------------------------------------------------
+   R1Z(phi)    G_frame    a_frame    [0       0            phi_dot]_G
+   R2Y(theta)  a_frame    c_frame    [0       theta_dot    0      ]_a
+   R3X(psi)    c_frame    B_frame    [psi_dot 0            0      ]_c</pre><p>We can express each of the local frame angular velocities in components of the B frame - and we'll use PASSIVE rotation matrices to do this:</p><pre class="codeinput">syms <span class="string">phi_dot</span>  <span class="string">theta_dot</span>  <span class="string">psi_dot</span>
+
+aRg = R1;
+cRa = R2;
+bRc = R3;
+
+wb_part_1 = bRc * cRa * aRg * [0;0;phi_dot]   <span class="comment">% convert local G into B</span>
+wb_part_2 = bRc * cRa *       [0;theta_dot;0] <span class="comment">% convert local a into B</span>
+wb_part_3 = bRc *             [psi_dot;0;0]   <span class="comment">% convert local c into B</span>
+</pre><pre class="codeoutput"> 
+wb_part_1 =
+ 
+         -phi_dot*sin(theta)
+ phi_dot*cos(theta)*sin(psi)
+ phi_dot*cos(psi)*cos(theta)
+ 
+ 
+wb_part_2 =
+ 
+                   0
+  theta_dot*cos(psi)
+ -theta_dot*sin(psi)
+ 
+ 
+wb_part_3 =
+ 
+ psi_dot
+       0
+       0
+ 
+</pre><h2>The total angular velocity expressed in the BODY B frame is therefore<a name="6"></a></h2><p>We can now construct the total angular velocity vector expressed in components of the final B frame.</p><pre class="codeinput">wb = wb_part_1 + wb_part_2 + wb_part_3;
+pretty(wb)
+</pre><pre class="codeoutput">/           psi_dot - phi_dot sin(theta)           \
+|                                                  |
+| theta_dot cos(psi) + phi_dot cos(theta) sin(psi) |
+|                                                  |
+\ phi_dot cos(psi) cos(theta) - theta_dot sin(psi) /
+
+</pre><h2>We can write the angular velocity vector as a MATRIX equation<a name="7"></a></h2><pre>Let's say that:
+                    [p]
+               wb = [q]
+                    [r]</pre><p>We can write a matrix equation of the form <b>A.x = b</b> that describes the relationship between the body rates and the Euler rates:</p><pre>  A *     x       = b</pre><pre>      [  phi_dot]   [p]
+  A * [theta_dot] = [q]
+      [  psi_dot]   [r]</pre><pre class="codeinput">syms <span class="string">p</span> <span class="string">q</span> <span class="string">r</span>
+
+[A,b] = equationsToMatrix(  wb(1)==p, <span class="keyword">...</span>
+                            wb(2)==q, <span class="keyword">...</span>
+                            wb(3)==r, [phi_dot, theta_dot, psi_dot]);
+
+pretty(A)
+
+pretty(b)
+</pre><pre class="codeoutput">/     -sin(theta),         0,     1 \
+|                                   |
+| cos(theta) sin(psi),  cos(psi), 0 |
+|                                   |
+\ cos(psi) cos(theta), -sin(psi), 0 /
+
+/ p \
+|   |
+| q |
+|   |
+\ r /
+
+</pre><h2>The SINGULARITY between BODY rates and EULER rates<a name="8"></a></h2><p>From the Matrix equation computed above there is actually an angle that causes the determinant of <b>A</b> to be ZERO, and hence prevents us from solving for the Euler rates iff we know the body rates.</p><p>The angle that cuases this problem is the rotation about the local Y axis, ie: the angle <b>phi</b>.  Specifically it is when <b>phi = 90 degrees</b>.</p><pre class="codeinput">det_A = simplify( det(A) )
+
+solve( det_A ==0 )
+</pre><pre class="codeoutput"> 
+det_A =
+ 
+-cos(theta)
+ 
+ 
+ans =
+ 
+pi/2
+ 
+</pre><h2>The Euler rates can therefore be written as<a name="9"></a></h2><p>We can use the results of the previous section to write the Euler rates as functions of the body rates.</p><pre>              [  phi_dot]
+euler_rates = [theta_dot]
+              [  psi_dot]</pre><pre class="codeinput">euler_rates = inv(A) * [p; q; r];
+euler_rates = simplify(euler_rates);
+
+pretty(euler_rates)
+</pre><pre class="codeoutput">/                    r cos(psi) + q sin(psi)                   \
+|                    -----------------------                   |
+|                           cos(theta)                         |
+|                                                              |
+|                    q cos(psi) - r sin(psi)                   |
+|                                                              |
+| p cos(theta) + r cos(psi) sin(theta) + q sin(psi) sin(theta) |
+| ------------------------------------------------------------ |
+\                          cos(theta)                          /
+
+</pre><h2>We can write the Euler rates vector as a MATRIX equation<a name="10"></a></h2><p>Similarly to what we did earlier we can write a matrix equation that describes the relationship between the body rates and the Euler rates:</p><pre>  some_A *  x  = b</pre><pre>           [p]   [  phi_dot]
+  some_A * [q] = [theta_dot]
+           [r]   [  psi_dot]</pre><pre class="codeinput">[A,b] = equationsToMatrix(  euler_rates(1)==phi_dot, <span class="keyword">...</span>
+                            euler_rates(2)==theta_dot, <span class="keyword">...</span>
+                            euler_rates(3)==psi_dot, [p,q,r]);
+
+pretty(A)
+
+pretty(b)
+</pre><pre class="codeoutput">/          sin(psi)             cos(psi)      \
+| 0,      ----------,          ----------     |
+|         cos(theta)           cos(theta)     |
+|                                             |
+| 0,       cos(psi),           -sin(psi)      |
+|                                             |
+|    sin(psi) sin(theta)  cos(psi) sin(theta) |
+| 1, -------------------, ------------------- |
+\         cos(theta)           cos(theta)     /
+
+/  phi_dot  \
+|           |
+| theta_dot |
+|           |
+\  psi_dot  /
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Explore PASSIVE rotations and EULER rates
+%
+% |Bradley Horton : 01-Mar-2016, bradley.horton@mathworks.com.au|
+
+%% Introduction:
+% A Passive rotation matrix, converts the co-ordinates of a point expressed
+% in a fixed *G-frame*, into the co-ordinates of the same point expressed in
+% the new *B-frame*. 
+%
+% An example of this concept is shown below
+% 
+% <<../PICS_DO_NOT_DELETE/bh_PIC_passive_rot_z.PNG>>
+% 
+
+%% An example of 3 successive PASSIVE rotations
+% Say we start with a G-frame.  We're going to apply 3 LOCAL axes rotations
+% which will result in a newly orientated frame called the B-frame.
+%
+% Assume that we apply these 3 successive rotations in the following order:
+%
+% # R1Z occurs 1st about the LOCAL *Z* body axis $(\phi)$, aka *YAW*
+% # R2Y occurs 2nd about the LOCAL *Y* body axis $(\theta)$, aka *PITCH*
+% # R3X occurs 3rd about the LOCAL *X* body axis $(\psi)$, aka *ROLL*
+%
+% We can express a vector defined in the G axis into it's corresponding 
+% description in the B axis, using a *PASSIVE* rotation matrix, ie:
+%
+% *|vB = R3X($\psi_x$) * R2Y($\theta_y$) * R1Z($\phi_z$) * vG|* 
+% 
+% OR, in a more compact form as:
+%
+% *|vB = bRg * vG|*
+%
+
+%% Create a passive rotation object
+syms phi theta psi
+OBJ_P = bh_rot_passive_G2B_CLS({'D1Z', 'D2Y', 'D3X'}, [phi, theta, psi], 'SYM')
+
+%% Here are the PASSIVE rotation matrices
+R1 = OBJ_P.get_R1
+R2 = OBJ_P.get_R2
+R3 = OBJ_P.get_R3
+
+%% Explore EULER rates
+%
+% As we apply these local frame rotations, we can represent the angular
+% rates of the rotating rames in the LOCAL frame co-ordinates.  These local
+% frame co-ordinates can then be converted into co-ordinates expressed in
+% the final B frame.
+%
+% For example, during each of the local axes rotations we can think of there 
+% being a START frame and an END frame:
+% 
+%                 START      END           Angular rate vector
+%                 frame      frame         associated with rotation
+%    REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%     R1Z(phi)    G_frame    a_frame    [0       0            phi_dot]_G
+%     R2Y(theta)  a_frame    c_frame    [0       theta_dot    0      ]_a
+%     R3X(psi)    c_frame    B_frame    [psi_dot 0            0      ]_c
+%
+% We can express each of the local frame angular velocities in components
+% of the B frame - and we'll use PASSIVE rotation matrices to do this:
+%
+
+syms phi_dot  theta_dot  psi_dot
+
+aRg = R1;
+cRa = R2;
+bRc = R3;
+
+wb_part_1 = bRc * cRa * aRg * [0;0;phi_dot]   % convert local G into B
+wb_part_2 = bRc * cRa *       [0;theta_dot;0] % convert local a into B
+wb_part_3 = bRc *             [psi_dot;0;0]   % convert local c into B
+
+%% The total angular velocity expressed in the BODY B frame is therefore
+% We can now construct the total angular velocity vector expressed in 
+% components of the final B frame.
+%
+
+wb = wb_part_1 + wb_part_2 + wb_part_3;
+pretty(wb)
+
+%% We can write the angular velocity vector as a MATRIX equation
+%
+%  Let's say that:
+%                      [p] 
+%                 wb = [q]
+%                      [r]
+%
+% We can write a matrix equation of the form *A.x = b* that describes the 
+% relationship between the body rates and the Euler rates:
+%
+%    A *     x       = b  
+%
+%        [  phi_dot]   [p]
+%    A * [theta_dot] = [q]
+%        [  psi_dot]   [r] 
+%         
+syms p q r
+
+[A,b] = equationsToMatrix(  wb(1)==p, ...
+                            wb(2)==q, ...
+                            wb(3)==r, [phi_dot, theta_dot, psi_dot]);
+                        
+pretty(A)
+                        
+pretty(b)
+       
+%% The SINGULARITY between BODY rates and EULER rates
+%
+% From the Matrix equation computed above there is actually an angle that
+% causes the determinant of *A* to be ZERO, and hence prevents us from
+% solving for the Euler rates iff we know the body rates.
+%
+% The angle that cuases this problem is the rotation about the local Y
+% axis, ie: the angle *phi*.  Specifically it is when *phi = 90 degrees*.
+
+det_A = simplify( det(A) )
+
+solve( det_A ==0 )
+
+%% The Euler rates can therefore be written as
+%
+% We can use the results of the previous section to write the Euler rates
+% as functions of the body rates.
+%
+%                [  phi_dot]
+%  euler_rates = [theta_dot]
+%                [  psi_dot]
+%
+euler_rates = inv(A) * [p; q; r];
+euler_rates = simplify(euler_rates);
+
+pretty(euler_rates)      
+%% We can write the Euler rates vector as a MATRIX equation
+%
+% Similarly to what we did earlier we can write a matrix equation that 
+% describes the relationship between the body rates and the Euler rates:
+%
+%    some_A *  x  = b
+%
+%             [p]   [  phi_dot]
+%    some_A * [q] = [theta_dot]
+%             [r]   [  psi_dot] 
+%         
+
+[A,b] = equationsToMatrix(  euler_rates(1)==phi_dot, ...
+                            euler_rates(2)==theta_dot, ...
+                            euler_rates(3)==psi_dot, [p,q,r]);
+                        
+pretty(A)
+                        
+pretty(b)
+                        
+
+##### SOURCE END #####
+--></body></html>

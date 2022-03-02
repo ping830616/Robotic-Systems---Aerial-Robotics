@@ -1,0 +1,662 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>RTW Report - bh_f14.c</title>
+<style> .LN { font-style: italic; color: #888888 } </style>
+<style> .CT { font-style: italic; color: #117755 } </style>
+<style> .PP { font-style: bold;   color: #992211 } </style>
+<style> .KW { font-style: bold;   color: #112266 } </style>
+<style> .DT { font-style: bold;   color: #112266 } </style>
+<link rel="stylesheet" type="text/css" href="rtwreport.css"></link><script language="JavaScript" type="text/javascript" src="rtwreport_utils.js"></script>
+<SCRIPT type="text/javascript" language="JavaScript" src="slwebview.js"></SCRIPT>
+<SCRIPT type="text/javascript" language="JavaScript" src="id_mapping.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="rtwannotate.js"></SCRIPT>
+</head>
+<body bgcolor="#eeeeee" text="#1122aa" onload="try {if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window.document); else local_onload();}} catch(err) {};if (typeof rtwannotate === 'function') {rtwannotate('bh_f14_c_cov.xml');}">
+<p>
+<table border="0" cellspacing="0" cellpadding="6" width="100%%" height="100%%"><tr><td width="100%%" valign="top" bgcolor="#ffffff">
+<h4>File: <a href="../bh_f14.c" target="rtwreport_document_frame" id="linkToText_plain">bh_f14.c</a></h4>
+<pre id="RTWcode">
+<span><a class="LN" name="1">    1   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="2">    2   </a><span class="CT"> * File: bh_f14.c</span>
+</span><span><a class="LN" name="3">    3   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="4">    4   </a><span class="CT"> * Code generated for Simulink model 'bh_f14'.</span>
+</span><span><a class="LN" name="5">    5   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="6">    6   </a><span class="CT"> * Model version                  : 1.18</span>
+</span><span><a class="LN" name="7">    7   </a><span class="CT"> * Simulink Coder version         : 8.10 (R2016a) 10-Feb-2016</span>
+</span><span><a class="LN" name="8">    8   </a><span class="CT"> * C/C++ source code generated on : Wed Jun 22 07:56:08 2016</span>
+</span><span><a class="LN" name="9">    9   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="10">   10   </a><span class="CT"> * Target selection: ert.tlc</span>
+</span><span><a class="LN" name="11">   11   </a><span class="CT"> * Embedded hardware selection: 32-bit Generic</span>
+</span><span><a class="LN" name="12">   12   </a><span class="CT"> * Code generation objectives: Unspecified</span>
+</span><span><a class="LN" name="13">   13   </a><span class="CT"> * Validation result: Not run</span>
+</span><span><a class="LN" name="14">   14   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="15">   15   </a>
+</span><span><a class="LN" name="16">   16   </a><font color="#992211">#</font><span class="PP">include</span> <font color="#992211">&quot;bh_f14.h&quot;</font>
+</span><span><a class="LN" name="17">   17   </a><font color="#992211">#</font><span class="PP">include</span> <font color="#992211">&quot;bh_f14_private.h&quot;</font>
+</span><span><a class="LN" name="18">   18   </a>
+</span><span><a class="LN" name="19">   19   </a><span class="DT">static</span> <span class="DT">void</span> <a href="#fcn_rate_scheduler" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rate_scheduler');" target="_self"><font color="#1122aa">rate_scheduler</font></a>(<a href="bh_f14_types_h.html#type_RT_MODEL_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_RT_MODEL_bh_f14_T');" target="_self"><font color="#1122aa">RT_MODEL_bh_f14_T</font></a> *<span class="DT">const</span> bh_f14_M);
+</span><span><a class="LN" name="20">   20   </a>
+</span><span><a class="LN" name="21">   21   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="22">   22   </a><span class="CT"> *   This function updates active task flag for each subrate.</span>
+</span><span><a class="LN" name="23">   23   </a><span class="CT"> * The function is called at model base rate, hence the</span>
+</span><span><a class="LN" name="24">   24   </a><span class="CT"> * generated code self-manages all its subrates.</span>
+</span><span><a class="LN" name="25">   25   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="26">   26   </a><span class="DT">static</span> <span class="DT">void</span> <a name="fcn_rate_scheduler">rate_scheduler</a>(<a href="bh_f14_types_h.html#type_RT_MODEL_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_RT_MODEL_bh_f14_T');" target="_self"><font color="#1122aa">RT_MODEL_bh_f14_T</font></a> *<span class="DT">const</span> bh_f14_M)
+</span><span><a class="LN" name="27">   27   </a><b>{</b>
+</span><span><a class="LN" name="28">   28   </a>  <span class="CT">/* Compute which subrates run during the next base time step.  Subrates</span>
+</span><span><a class="LN" name="29">   29   </a><span class="CT">   * are an integer multiple of the base rate counter.  Therefore, the subtask</span>
+</span><span><a class="LN" name="30">   30   </a><span class="CT">   * counter is reset when it reaches its limit (zero means run).</span>
+</span><span><a class="LN" name="31">   31   </a><span class="CT">   */</span>
+</span><span><a class="LN" name="32">   32   </a>  (bh_f14_M-&gt;Timing.TaskCounters.TID[2])++;
+</span><span><a class="LN" name="33">   33   </a>  <span class="KW">if</span> ((bh_f14_M-&gt;Timing.TaskCounters.TID[2]) &gt; 9) <b>{</b><span class="CT">/* Sample time: [0.1s, 0.0s] */</span>
+</span><span><a class="LN" name="34">   34   </a>    bh_f14_M-&gt;Timing.TaskCounters.TID[2] = 0;
+</span><span><a class="LN" name="35">   35   </a>  <b>}</b>
+</span><span><a class="LN" name="36">   36   </a><b>}</b>
+</span><span><a class="LN" name="37">   37   </a>
+</span><span><a class="LN" name="38">   38   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="39">   39   </a><span class="CT"> * This function updates continuous states using the ODE4 fixed-step</span>
+</span><span><a class="LN" name="40">   40   </a><span class="CT"> * solver algorithm</span>
+</span><span><a class="LN" name="41">   41   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="42">   42   </a><span class="DT">static</span> <span class="DT">void</span> <a name="fcn_rt_ertODEUpdateContinuousStates">rt_ertODEUpdateContinuousStates</a>(RTWSolverInfo *si ,
+</span><span><a class="LN" name="43">   43   </a>  <a href="bh_f14_types_h.html#type_RT_MODEL_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_RT_MODEL_bh_f14_T');" target="_self"><font color="#1122aa">RT_MODEL_bh_f14_T</font></a> *<span class="DT">const</span> bh_f14_M, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> bh_f14_U_u, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a>
+</span><span><a class="LN" name="44">   44   </a>  *bh_f14_Y_alpharad, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *bh_f14_Y_NzPilotg)
+</span><span><a class="LN" name="45">   45   </a><b>{</b>
+</span><span><a class="LN" name="46">   46   </a>  <a href="rtwtypes_h.html#type_time_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_time_T');" target="_self"><font color="#1122aa">time_T</font></a> t = rtsiGetT(si);
+</span><span><a class="LN" name="47">   47   </a>  <a href="rtwtypes_h.html#type_time_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_time_T');" target="_self"><font color="#1122aa">time_T</font></a> tnew = rtsiGetSolverStopTime(si);
+</span><span><a class="LN" name="48">   48   </a>  <a href="rtwtypes_h.html#type_time_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_time_T');" target="_self"><font color="#1122aa">time_T</font></a> h = rtsiGetStepSize(si);
+</span><span><a class="LN" name="49">   49   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *x = rtsiGetContStates(si);
+</span><span><a class="LN" name="50">   50   </a>  <a href="bh_f14_h.html#type_ODE4_IntgData" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_ODE4_IntgData');" target="_self"><font color="#1122aa">ODE4_IntgData</font></a> *id = (<a href="bh_f14_h.html#type_ODE4_IntgData" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_ODE4_IntgData');" target="_self"><font color="#1122aa">ODE4_IntgData</font></a> *)rtsiGetSolverData(si);
+</span><span><a class="LN" name="51">   51   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *y = id-&gt;y;
+</span><span><a class="LN" name="52">   52   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *f0 = id-&gt;f[0];
+</span><span><a class="LN" name="53">   53   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *f1 = id-&gt;f[1];
+</span><span><a class="LN" name="54">   54   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *f2 = id-&gt;f[2];
+</span><span><a class="LN" name="55">   55   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *f3 = id-&gt;f[3];
+</span><span><a class="LN" name="56">   56   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> temp;
+</span><span><a class="LN" name="57">   57   </a>  <a href="rtwtypes_h.html#type_int_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_int_T');" target="_self"><font color="#1122aa">int_T</font></a> i;
+</span><span><a class="LN" name="58">   58   </a>  <a href="rtwtypes_h.html#type_int_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_int_T');" target="_self"><font color="#1122aa">int_T</font></a> nXc = 10;
+</span><span><a class="LN" name="59">   59   </a>  rtsiSetSimTimeStep(si,MINOR_TIME_STEP);
+</span><span><a class="LN" name="60">   60   </a>
+</span><span><a class="LN" name="61">   61   </a>  <span class="CT">/* Save the state values at time t in y, we'll use x as ynew. */</span>
+</span><span><a class="LN" name="62">   62   </a>  (<span class="DT">void</span>) memcpy(y, x,
+</span><span><a class="LN" name="63">   63   </a>                (<a href="rtwtypes_h.html#type_uint_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint_T');" target="_self"><font color="#1122aa">uint_T</font></a>)nXc*<span class="KW">sizeof</span>(<a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a>));
+</span><span><a class="LN" name="64">   64   </a>
+</span><span><a class="LN" name="65">   65   </a>  <span class="CT">/* Assumes that rtsiSetT and ModelOutputs are up-to-date */</span>
+</span><span><a class="LN" name="66">   66   </a>  <span class="CT">/* f0 = f(t,y) */</span>
+</span><span><a class="LN" name="67">   67   </a>  rtsiSetdX(si, f0);
+</span><span><a class="LN" name="68">   68   </a>  <a href="#fcn_bh_f14_derivatives" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_bh_f14_derivatives');" target="_self"><font color="#1122aa">bh_f14_derivatives</font></a>(bh_f14_M);
+</span><span><a class="LN" name="69">   69   </a>
+</span><span><a class="LN" name="70">   70   </a>  <span class="CT">/* f1 = f(t + (h/2), y + (h/2)*f0) */</span>
+</span><span><a class="LN" name="71">   71   </a>  temp = 0.5 * h;
+</span><span><a class="LN" name="72">   72   </a>  <span class="KW">for</span> (i = 0; i &lt; nXc; i++) <b>{</b>
+</span><span><a class="LN" name="73">   73   </a>    x[i] = y[i] + (temp*f0[i]);
+</span><span><a class="LN" name="74">   74   </a>  <b>}</b>
+</span><span><a class="LN" name="75">   75   </a>
+</span><span><a class="LN" name="76">   76   </a>  rtsiSetT(si, t + temp);
+</span><span><a class="LN" name="77">   77   </a>  rtsiSetdX(si, f1);
+</span><span><a class="LN" name="78">   78   </a>  <a href="#fcn_bh_f14_step" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_bh_f14_step');" target="_self"><font color="#1122aa">bh_f14_step</font></a>(bh_f14_M, bh_f14_U_u, bh_f14_Y_alpharad, bh_f14_Y_NzPilotg);
+</span><span><a class="LN" name="79">   79   </a>  <a href="#fcn_bh_f14_derivatives" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_bh_f14_derivatives');" target="_self"><font color="#1122aa">bh_f14_derivatives</font></a>(bh_f14_M);
+</span><span><a class="LN" name="80">   80   </a>
+</span><span><a class="LN" name="81">   81   </a>  <span class="CT">/* f2 = f(t + (h/2), y + (h/2)*f1) */</span>
+</span><span><a class="LN" name="82">   82   </a>  <span class="KW">for</span> (i = 0; i &lt; nXc; i++) <b>{</b>
+</span><span><a class="LN" name="83">   83   </a>    x[i] = y[i] + (temp*f1[i]);
+</span><span><a class="LN" name="84">   84   </a>  <b>}</b>
+</span><span><a class="LN" name="85">   85   </a>
+</span><span><a class="LN" name="86">   86   </a>  rtsiSetdX(si, f2);
+</span><span><a class="LN" name="87">   87   </a>  <a href="#fcn_bh_f14_step" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_bh_f14_step');" target="_self"><font color="#1122aa">bh_f14_step</font></a>(bh_f14_M, bh_f14_U_u, bh_f14_Y_alpharad, bh_f14_Y_NzPilotg);
+</span><span><a class="LN" name="88">   88   </a>  <a href="#fcn_bh_f14_derivatives" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_bh_f14_derivatives');" target="_self"><font color="#1122aa">bh_f14_derivatives</font></a>(bh_f14_M);
+</span><span><a class="LN" name="89">   89   </a>
+</span><span><a class="LN" name="90">   90   </a>  <span class="CT">/* f3 = f(t + h, y + h*f2) */</span>
+</span><span><a class="LN" name="91">   91   </a>  <span class="KW">for</span> (i = 0; i &lt; nXc; i++) <b>{</b>
+</span><span><a class="LN" name="92">   92   </a>    x[i] = y[i] + (h*f2[i]);
+</span><span><a class="LN" name="93">   93   </a>  <b>}</b>
+</span><span><a class="LN" name="94">   94   </a>
+</span><span><a class="LN" name="95">   95   </a>  rtsiSetT(si, tnew);
+</span><span><a class="LN" name="96">   96   </a>  rtsiSetdX(si, f3);
+</span><span><a class="LN" name="97">   97   </a>  <a href="#fcn_bh_f14_step" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_bh_f14_step');" target="_self"><font color="#1122aa">bh_f14_step</font></a>(bh_f14_M, bh_f14_U_u, bh_f14_Y_alpharad, bh_f14_Y_NzPilotg);
+</span><span><a class="LN" name="98">   98   </a>  <a href="#fcn_bh_f14_derivatives" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_bh_f14_derivatives');" target="_self"><font color="#1122aa">bh_f14_derivatives</font></a>(bh_f14_M);
+</span><span><a class="LN" name="99">   99   </a>
+</span><span><a class="LN" name="100">  100   </a>  <span class="CT">/* tnew = t + h</span>
+</span><span><a class="LN" name="101">  101   </a><span class="CT">     ynew = y + (h/6)*(f0 + 2*f1 + 2*f2 + 2*f3) */</span>
+</span><span><a class="LN" name="102">  102   </a>  temp = h / 6.0;
+</span><span><a class="LN" name="103">  103   </a>  <span class="KW">for</span> (i = 0; i &lt; nXc; i++) <b>{</b>
+</span><span><a class="LN" name="104">  104   </a>    x[i] = y[i] + temp*(f0[i] + 2.0*f1[i] + 2.0*f2[i] + f3[i]);
+</span><span><a class="LN" name="105">  105   </a>  <b>}</b>
+</span><span><a class="LN" name="106">  106   </a>
+</span><span><a class="LN" name="107">  107   </a>  rtsiSetSimTimeStep(si,MAJOR_TIME_STEP);
+</span><span><a class="LN" name="108">  108   </a><b>}</b>
+</span><span><a class="LN" name="109">  109   </a>
+</span><span><a class="LN" name="110">  110   </a><a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> <a name="fcn_rt_urand_Upu32_Yd_f_pw_snf">rt_urand_Upu32_Yd_f_pw_snf</a>(<a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a> *u)
+</span><span><a class="LN" name="111">  111   </a><b>{</b>
+</span><span><a class="LN" name="112">  112   </a>  <a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a> lo;
+</span><span><a class="LN" name="113">  113   </a>  <a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a> hi;
+</span><span><a class="LN" name="114">  114   </a>
+</span><span><a class="LN" name="115">  115   </a>  <span class="CT">/* Uniform random number generator (random number between 0 and 1)</span>
+</span><span><a class="LN" name="116">  116   </a><span class="CT"></span>
+</span><span><a class="LN" name="117">  117   </a><span class="CT">     #define IA      16807                      magic multiplier = 7^5</span>
+</span><span><a class="LN" name="118">  118   </a><span class="CT">     #define IM      2147483647                 modulus = 2^31-1</span>
+</span><span><a class="LN" name="119">  119   </a><span class="CT">     #define IQ      127773                     IM div IA</span>
+</span><span><a class="LN" name="120">  120   </a><span class="CT">     #define IR      2836                       IM modulo IA</span>
+</span><span><a class="LN" name="121">  121   </a><span class="CT">     #define S       4.656612875245797e-10      reciprocal of 2^31-1</span>
+</span><span><a class="LN" name="122">  122   </a><span class="CT">     test = IA * (seed % IQ) - IR * (seed/IQ)</span>
+</span><span><a class="LN" name="123">  123   </a><span class="CT">     seed = test &lt; 0 ? (test + IM) : test</span>
+</span><span><a class="LN" name="124">  124   </a><span class="CT">     return (seed*S)</span>
+</span><span><a class="LN" name="125">  125   </a><span class="CT">   */</span>
+</span><span><a class="LN" name="126">  126   </a>  lo = *u % 127773U * 16807U;
+</span><span><a class="LN" name="127">  127   </a>  hi = *u / 127773U * 2836U;
+</span><span><a class="LN" name="128">  128   </a>  <span class="KW">if</span> (lo &lt; hi) <b>{</b>
+</span><span><a class="LN" name="129">  129   </a>    *u = 2147483647U - (hi - lo);
+</span><span><a class="LN" name="130">  130   </a>  <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="131">  131   </a>    *u = lo - hi;
+</span><span><a class="LN" name="132">  132   </a>  <b>}</b>
+</span><span><a class="LN" name="133">  133   </a>
+</span><span><a class="LN" name="134">  134   </a>  <span class="KW">return</span> (<a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a>)*u * 4.6566128752457969E-10;
+</span><span><a class="LN" name="135">  135   </a><b>}</b>
+</span><span><a class="LN" name="136">  136   </a>
+</span><span><a class="LN" name="137">  137   </a><a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> <a name="fcn_rt_nrand_Upu32_Yd_f_pw_snf">rt_nrand_Upu32_Yd_f_pw_snf</a>(<a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a> *u)
+</span><span><a class="LN" name="138">  138   </a><b>{</b>
+</span><span><a class="LN" name="139">  139   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> y;
+</span><span><a class="LN" name="140">  140   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> sr;
+</span><span><a class="LN" name="141">  141   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> si;
+</span><span><a class="LN" name="142">  142   </a>
+</span><span><a class="LN" name="143">  143   </a>  <span class="CT">/* Normal (Gaussian) random number generator */</span>
+</span><span><a class="LN" name="144">  144   </a>  <span class="KW">do</span> <b>{</b>
+</span><span><a class="LN" name="145">  145   </a>    sr = 2.0 * <a href="#fcn_rt_urand_Upu32_Yd_f_pw_snf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rt_urand_Upu32_Yd_f_pw_snf');" target="_self"><font color="#1122aa">rt_urand_Upu32_Yd_f_pw_snf</font></a>(u) - 1.0;
+</span><span><a class="LN" name="146">  146   </a>    si = 2.0 * <a href="#fcn_rt_urand_Upu32_Yd_f_pw_snf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rt_urand_Upu32_Yd_f_pw_snf');" target="_self"><font color="#1122aa">rt_urand_Upu32_Yd_f_pw_snf</font></a>(u) - 1.0;
+</span><span><a class="LN" name="147">  147   </a>    si = sr * sr + si * si;
+</span><span><a class="LN" name="148">  148   </a>  <b>}</b> <span class="KW">while</span> (si &gt; 1.0);
+</span><span><a class="LN" name="149">  149   </a>
+</span><span><a class="LN" name="150">  150   </a>  y = sqrt(-2.0 * log(si) / si) * sr;
+</span><span><a class="LN" name="151">  151   </a>  <span class="KW">return</span> y;
+</span><span><a class="LN" name="152">  152   </a><b>}</b>
+</span><span><a class="LN" name="153">  153   </a>
+</span><span><a class="LN" name="154">  154   </a><span class="CT">/* Model step function */</span>
+</span><span><a class="LN" name="155">  155   </a><span class="DT">void</span> <a name="fcn_bh_f14_step">bh_f14_step</a>(<a href="bh_f14_types_h.html#type_RT_MODEL_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_RT_MODEL_bh_f14_T');" target="_self"><font color="#1122aa">RT_MODEL_bh_f14_T</font></a> *<span class="DT">const</span> bh_f14_M, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> bh_f14_U_u, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a>
+</span><span><a class="LN" name="156">  156   </a>                 *bh_f14_Y_alpharad, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *bh_f14_Y_NzPilotg)
+</span><span><a class="LN" name="157">  157   </a><b>{</b>
+</span><span><a class="LN" name="158">  158   </a>  <a href="bh_f14_h.html#type_B_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_B_bh_f14_T');" target="_self"><font color="#1122aa">B_bh_f14_T</font></a> *bh_f14_B = ((<a href="bh_f14_h.html#type_B_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_B_bh_f14_T');" target="_self"><font color="#1122aa">B_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.blockIO);
+</span><span><a class="LN" name="159">  159   </a>  <a href="bh_f14_h.html#type_DW_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_DW_bh_f14_T');" target="_self"><font color="#1122aa">DW_bh_f14_T</font></a> *bh_f14_DW = ((<a href="bh_f14_h.html#type_DW_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_DW_bh_f14_T');" target="_self"><font color="#1122aa">DW_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.dwork);
+</span><span><a class="LN" name="160">  160   </a>  <a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a> *bh_f14_X = ((<a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.contStates);
+</span><span><a class="LN" name="161">  161   </a>  <span class="KW">if</span> (rtmIsMajorTimeStep(bh_f14_M)) <b>{</b>
+</span><span><a class="LN" name="162">  162   </a>    <span class="CT">/* set solver stop time */</span>
+</span><span><a class="LN" name="163">  163   </a>    rtsiSetSolverStopTime(&amp;bh_f14_M-&gt;solverInfo,((bh_f14_M-&gt;Timing.clockTick0+1)*
+</span><span><a class="LN" name="164">  164   </a>      bh_f14_M-&gt;Timing.stepSize0));
+</span><span><a class="LN" name="165">  165   </a>  <b>}</b>                                    <span class="CT">/* end MajorTimeStep */</span>
+</span><span><a class="LN" name="166">  166   </a>
+</span><span><a class="LN" name="167">  167   </a>  <span class="CT">/* Update absolute time of base rate at minor time step */</span>
+</span><span><a class="LN" name="168">  168   </a>  <span class="KW">if</span> (rtmIsMinorTimeStep(bh_f14_M)) <b>{</b>
+</span><span><a class="LN" name="169">  169   </a>    bh_f14_M-&gt;Timing.t[0] = rtsiGetT(&amp;bh_f14_M-&gt;solverInfo);
+</span><span><a class="LN" name="170">  170   </a>  <b>}</b>
+</span><span><a class="LN" name="171">  171   </a>
+</span><span><a class="LN" name="172">  172   </a>  <b>{</b>
+</span><span><a class="LN" name="173">  173   </a>    <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *lastU;
+</span><span><a class="LN" name="174">  174   </a>    <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> rtb_Actuator;
+</span><span><a class="LN" name="175">  175   </a>    <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> rtb_AlphasensorLowpassFilter;
+</span><span><a class="LN" name="176">  176   </a>
+</span><span><a class="LN" name="177">  177   </a>    <span class="CT">/* TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:14')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Transfer Fcn.2</i></font></a>' */</span>
+</span><span><a class="LN" name="178">  178   </a>    bh_f14_B-&gt;TransferFcn2 = 0.0;
+</span><span><a class="LN" name="179">  179   </a>    bh_f14_B-&gt;TransferFcn2 += 1.0 * bh_f14_X-&gt;TransferFcn2_CSTATE;
+</span><span><a class="LN" name="180">  180   </a>
+</span><span><a class="LN" name="181">  181   </a>    <span class="CT">/* Gain: '<a href="matlab:coder.internal.code2model('bh_f14:42')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Gain5</i></font></a>' */</span>
+</span><span><a class="LN" name="182">  182   </a>    bh_f14_B-&gt;Gain5 = 0.001450536698578474 * bh_f14_B-&gt;TransferFcn2;
+</span><span><a class="LN" name="183">  183   </a>
+</span><span><a class="LN" name="184">  184   </a>    <span class="CT">/* Outport: '<a href="matlab:coder.internal.code2model('bh_f14:62')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/alpha (rad)</i></font></a>' */</span>
+</span><span><a class="LN" name="185">  185   </a>    *bh_f14_Y_alpharad = bh_f14_B-&gt;Gain5;
+</span><span><a class="LN" name="186">  186   </a>
+</span><span><a class="LN" name="187">  187   </a>    <span class="CT">/* Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:48')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative</i></font></a>' */</span>
+</span><span><a class="LN" name="188">  188   </a>    <span class="KW">if</span> ((bh_f14_DW-&gt;TimeStampA &gt;= bh_f14_M-&gt;Timing.t[0]) &amp;&amp;
+</span><span><a class="LN" name="189">  189   </a>        (bh_f14_DW-&gt;TimeStampB &gt;= bh_f14_M-&gt;Timing.t[0])) <b>{</b>
+</span><span><a class="LN" name="190">  190   </a>      rtb_AlphasensorLowpassFilter = 0.0;
+</span><span><a class="LN" name="191">  191   </a>    <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="192">  192   </a>      rtb_Actuator = bh_f14_DW-&gt;TimeStampA;
+</span><span><a class="LN" name="193">  193   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeA;
+</span><span><a class="LN" name="194">  194   </a>      <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA &lt; bh_f14_DW-&gt;TimeStampB) <b>{</b>
+</span><span><a class="LN" name="195">  195   </a>        <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampB &lt; bh_f14_M-&gt;Timing.t[0]) <b>{</b>
+</span><span><a class="LN" name="196">  196   </a>          rtb_Actuator = bh_f14_DW-&gt;TimeStampB;
+</span><span><a class="LN" name="197">  197   </a>          lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB;
+</span><span><a class="LN" name="198">  198   </a>        <b>}</b>
+</span><span><a class="LN" name="199">  199   </a>      <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="200">  200   </a>        <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA &gt;= bh_f14_M-&gt;Timing.t[0]) <b>{</b>
+</span><span><a class="LN" name="201">  201   </a>          rtb_Actuator = bh_f14_DW-&gt;TimeStampB;
+</span><span><a class="LN" name="202">  202   </a>          lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB;
+</span><span><a class="LN" name="203">  203   </a>        <b>}</b>
+</span><span><a class="LN" name="204">  204   </a>      <b>}</b>
+</span><span><a class="LN" name="205">  205   </a>
+</span><span><a class="LN" name="206">  206   </a>      rtb_AlphasensorLowpassFilter = (bh_f14_B-&gt;TransferFcn2 - *lastU) /
+</span><span><a class="LN" name="207">  207   </a>        (bh_f14_M-&gt;Timing.t[0] - rtb_Actuator);
+</span><span><a class="LN" name="208">  208   </a>    <b>}</b>
+</span><span><a class="LN" name="209">  209   </a>
+</span><span><a class="LN" name="210">  210   </a>    <span class="CT">/* End of Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:48')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative</i></font></a>' */</span>
+</span><span><a class="LN" name="211">  211   </a>
+</span><span><a class="LN" name="212">  212   </a>    <span class="CT">/* TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:13')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Transfer Fcn.1</i></font></a>' */</span>
+</span><span><a class="LN" name="213">  213   </a>    bh_f14_B-&gt;TransferFcn1 = 0.0;
+</span><span><a class="LN" name="214">  214   </a>    bh_f14_B-&gt;TransferFcn1 += 1.0 * bh_f14_X-&gt;TransferFcn1_CSTATE;
+</span><span><a class="LN" name="215">  215   </a>
+</span><span><a class="LN" name="216">  216   </a>    <span class="CT">/* Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:49')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative1</i></font></a>' */</span>
+</span><span><a class="LN" name="217">  217   </a>    <span class="KW">if</span> ((bh_f14_DW-&gt;TimeStampA_o &gt;= bh_f14_M-&gt;Timing.t[0]) &amp;&amp;
+</span><span><a class="LN" name="218">  218   </a>        (bh_f14_DW-&gt;TimeStampB_h &gt;= bh_f14_M-&gt;Timing.t[0])) <b>{</b>
+</span><span><a class="LN" name="219">  219   </a>      rtb_Actuator = 0.0;
+</span><span><a class="LN" name="220">  220   </a>    <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="221">  221   </a>      rtb_Actuator = bh_f14_DW-&gt;TimeStampA_o;
+</span><span><a class="LN" name="222">  222   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeA_i;
+</span><span><a class="LN" name="223">  223   </a>      <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA_o &lt; bh_f14_DW-&gt;TimeStampB_h) <b>{</b>
+</span><span><a class="LN" name="224">  224   </a>        <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampB_h &lt; bh_f14_M-&gt;Timing.t[0]) <b>{</b>
+</span><span><a class="LN" name="225">  225   </a>          rtb_Actuator = bh_f14_DW-&gt;TimeStampB_h;
+</span><span><a class="LN" name="226">  226   </a>          lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB_j;
+</span><span><a class="LN" name="227">  227   </a>        <b>}</b>
+</span><span><a class="LN" name="228">  228   </a>      <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="229">  229   </a>        <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA_o &gt;= bh_f14_M-&gt;Timing.t[0]) <b>{</b>
+</span><span><a class="LN" name="230">  230   </a>          rtb_Actuator = bh_f14_DW-&gt;TimeStampB_h;
+</span><span><a class="LN" name="231">  231   </a>          lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB_j;
+</span><span><a class="LN" name="232">  232   </a>        <b>}</b>
+</span><span><a class="LN" name="233">  233   </a>      <b>}</b>
+</span><span><a class="LN" name="234">  234   </a>
+</span><span><a class="LN" name="235">  235   </a>      rtb_Actuator = (bh_f14_B-&gt;TransferFcn1 - *lastU) / (bh_f14_M-&gt;Timing.t[0]
+</span><span><a class="LN" name="236">  236   </a>        - rtb_Actuator);
+</span><span><a class="LN" name="237">  237   </a>    <b>}</b>
+</span><span><a class="LN" name="238">  238   </a>
+</span><span><a class="LN" name="239">  239   </a>    <span class="CT">/* End of Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:49')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative1</i></font></a>' */</span>
+</span><span><a class="LN" name="240">  240   </a>
+</span><span><a class="LN" name="241">  241   </a>    <span class="CT">/* Gain: '<a href="matlab:coder.internal.code2model('bh_f14:51')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Gain2</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="242">  242   </a><span class="CT">     *  Constant: '<a href="matlab:coder.internal.code2model('bh_f14:47')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Constant</i></font></a>'</span>
+</span><span><a class="LN" name="243">  243   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:50')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Gain1</i></font></a>'</span>
+</span><span><a class="LN" name="244">  244   </a><span class="CT">     *  Product: '<a href="matlab:coder.internal.code2model('bh_f14:52')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Product</i></font></a>'</span>
+</span><span><a class="LN" name="245">  245   </a><span class="CT">     *  Sum: '<a href="matlab:coder.internal.code2model('bh_f14:53')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Sum1</i></font></a>'</span>
+</span><span><a class="LN" name="246">  246   </a><span class="CT">     */</span>
+</span><span><a class="LN" name="247">  247   </a>    bh_f14_B-&gt;Gain2 = ((22.8 * rtb_Actuator - rtb_AlphasensorLowpassFilter) +
+</span><span><a class="LN" name="248">  248   </a>                       bh_f14_B-&gt;TransferFcn1 * 689.4) * 0.031055900621118009;
+</span><span><a class="LN" name="249">  249   </a>
+</span><span><a class="LN" name="250">  250   </a>    <span class="CT">/* Outport: '<a href="matlab:coder.internal.code2model('bh_f14:63')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Nz Pilot (g)</i></font></a>' */</span>
+</span><span><a class="LN" name="251">  251   </a>    *bh_f14_Y_NzPilotg = bh_f14_B-&gt;Gain2;
+</span><span><a class="LN" name="252">  252   </a>    <span class="KW">if</span> (rtmIsMajorTimeStep(bh_f14_M) &amp;&amp;
+</span><span><a class="LN" name="253">  253   </a>        bh_f14_M-&gt;Timing.TaskCounters.TID[1] == 0) <b>{</b>
+</span><span><a class="LN" name="254">  254   </a>    <b>}</b>
+</span><span><a class="LN" name="255">  255   </a>
+</span><span><a class="LN" name="256">  256   </a>    <span class="CT">/* SignalGenerator: '<a href="matlab:coder.internal.code2model('bh_f14:57')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Pilot</i></font></a>' */</span>
+</span><span><a class="LN" name="257">  257   </a>    rtb_Actuator = 0.079577471545947673 * bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="258">  258   </a>    <span class="KW">if</span> (rtb_Actuator - floor(rtb_Actuator) &gt;= 0.5) <b>{</b>
+</span><span><a class="LN" name="259">  259   </a>      rtb_Actuator = 1.0;
+</span><span><a class="LN" name="260">  260   </a>    <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="261">  261   </a>      rtb_Actuator = -1.0;
+</span><span><a class="LN" name="262">  262   </a>    <b>}</b>
+</span><span><a class="LN" name="263">  263   </a>
+</span><span><a class="LN" name="264">  264   </a>    <span class="CT">/* End of SignalGenerator: '<a href="matlab:coder.internal.code2model('bh_f14:57')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Pilot</i></font></a>' */</span>
+</span><span><a class="LN" name="265">  265   </a>
+</span><span><a class="LN" name="266">  266   </a>    <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('bh_f14:61')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Sum1</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="267">  267   </a><span class="CT">     *  Inport: '<a href="matlab:coder.internal.code2model('bh_f14:1')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/u</i></font></a>'</span>
+</span><span><a class="LN" name="268">  268   </a><span class="CT">     */</span>
+</span><span><a class="LN" name="269">  269   </a>    bh_f14_B-&gt;Sum1 = rtb_Actuator + bh_f14_U_u;
+</span><span><a class="LN" name="270">  270   </a>    <span class="KW">if</span> (rtmIsMajorTimeStep(bh_f14_M) &amp;&amp;
+</span><span><a class="LN" name="271">  271   </a>        bh_f14_M-&gt;Timing.TaskCounters.TID[1] == 0) <b>{</b>
+</span><span><a class="LN" name="272">  272   </a>    <b>}</b>
+</span><span><a class="LN" name="273">  273   </a>
+</span><span><a class="LN" name="274">  274   </a>    <span class="CT">/* TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:2')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Actuator</i></font></a>' */</span>
+</span><span><a class="LN" name="275">  275   </a>    rtb_Actuator = 20.0 * bh_f14_X-&gt;Actuator_CSTATE;
+</span><span><a class="LN" name="276">  276   </a>
+</span><span><a class="LN" name="277">  277   </a>    <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('bh_f14:31')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Sum2</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="278">  278   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:24')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Gain2</i></font></a>'</span>
+</span><span><a class="LN" name="279">  279   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:25')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Gain3</i></font></a>'</span>
+</span><span><a class="LN" name="280">  280   </a><span class="CT">     *  Sum: '<a href="matlab:coder.internal.code2model('bh_f14:30')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Sum1</i></font></a>'</span>
+</span><span><a class="LN" name="281">  281   </a><span class="CT">     *  TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:22')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Alpha-sensor Low-pass Filter</i></font></a>'</span>
+</span><span><a class="LN" name="282">  282   </a><span class="CT">     *  TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:26')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Pitch Rate Lead Filter</i></font></a>'</span>
+</span><span><a class="LN" name="283">  283   </a><span class="CT">     *  TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:28')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Stick Prefilter</i></font></a>'</span>
+</span><span><a class="LN" name="284">  284   </a><span class="CT">     */</span>
+</span><span><a class="LN" name="285">  285   </a>    bh_f14_B-&gt;Sum2 = 10.0 * bh_f14_X-&gt;StickPrefilter_CSTATE - (((-1.173) *
+</span><span><a class="LN" name="286">  286   </a>      bh_f14_X-&gt;PitchRateLeadFilter_CSTATE + 1.0 * bh_f14_B-&gt;TransferFcn1) *
+</span><span><a class="LN" name="287">  287   </a>      0.8156 + 2.5258903763576663 * bh_f14_X-&gt;AlphasensorLowpassFilter_CSTATE *
+</span><span><a class="LN" name="288">  288   </a>      0.677);
+</span><span><a class="LN" name="289">  289   </a>
+</span><span><a class="LN" name="290">  290   </a>    <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('bh_f14:29')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Sum</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="291">  291   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:23')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Gain</i></font></a>'</span>
+</span><span><a class="LN" name="292">  292   </a><span class="CT">     *  TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:27')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Proportional plus integral compensator</i></font></a>'</span>
+</span><span><a class="LN" name="293">  293   </a><span class="CT">     */</span>
+</span><span><a class="LN" name="294">  294   </a>    bh_f14_B-&gt;Sum = (-1.746) * bh_f14_B-&gt;Sum2 + (-3.864) *
+</span><span><a class="LN" name="295">  295   </a>      bh_f14_X-&gt;Proportionalplusintegralcompens;
+</span><span><a class="LN" name="296">  296   </a>
+</span><span><a class="LN" name="297">  297   </a>    <span class="CT">/* TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:36')" name="code2model"><font color="#117755"><i>&lt;S4&gt;/W-gust model</i></font></a>' */</span>
+</span><span><a class="LN" name="298">  298   </a>    bh_f14_B-&gt;Wgustmodel = 0.0;
+</span><span><a class="LN" name="299">  299   </a>    bh_f14_B-&gt;Wgustmodel += 3.2636985073652349 * bh_f14_X-&gt;Wgustmodel_CSTATE[0];
+</span><span><a class="LN" name="300">  300   </a>    bh_f14_B-&gt;Wgustmodel += 0.74337115819042854 * bh_f14_X-&gt;Wgustmodel_CSTATE[1];
+</span><span><a class="LN" name="301">  301   </a>
+</span><span><a class="LN" name="302">  302   </a>    <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('bh_f14:11')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Sum1</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="303">  303   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:39')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Gain</i></font></a>'</span>
+</span><span><a class="LN" name="304">  304   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:7')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Gain3</i></font></a>'</span>
+</span><span><a class="LN" name="305">  305   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:9')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Gain5</i></font></a>'</span>
+</span><span><a class="LN" name="306">  306   </a><span class="CT">     */</span>
+</span><span><a class="LN" name="307">  307   </a>    bh_f14_B-&gt;Sum1_o = ((-63.9979) * rtb_Actuator - (-0.6385) *
+</span><span><a class="LN" name="308">  308   </a>                        bh_f14_B-&gt;Wgustmodel) + 689.4 * bh_f14_B-&gt;TransferFcn1;
+</span><span><a class="LN" name="309">  309   </a>
+</span><span><a class="LN" name="310">  310   </a>    <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('bh_f14:12')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Sum2</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="311">  311   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:40')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Gain1</i></font></a>'</span>
+</span><span><a class="LN" name="312">  312   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:41')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Gain2</i></font></a>'</span>
+</span><span><a class="LN" name="313">  313   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:8')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Gain4</i></font></a>'</span>
+</span><span><a class="LN" name="314">  314   </a><span class="CT">     *  Gain: '<a href="matlab:coder.internal.code2model('bh_f14:10')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Gain6</i></font></a>'</span>
+</span><span><a class="LN" name="315">  315   </a><span class="CT">     *  Sum: '<a href="matlab:coder.internal.code2model('bh_f14:60')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Sum</i></font></a>'</span>
+</span><span><a class="LN" name="316">  316   </a><span class="CT">     *  TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:35')" name="code2model"><font color="#117755"><i>&lt;S4&gt;/Q-gust model</i></font></a>'</span>
+</span><span><a class="LN" name="317">  317   </a><span class="CT">     */</span>
+</span><span><a class="LN" name="318">  318   </a>    bh_f14_B-&gt;Sum2_h = ((-0.00592) * bh_f14_B-&gt;TransferFcn2 -
+</span><span><a class="LN" name="319">  319   </a>                        (((-0.10355189850799512) * bh_f14_X-&gt;Qgustmodel_CSTATE +
+</span><span><a class="LN" name="320">  320   </a>                          0.01224696964599171 * bh_f14_B-&gt;Wgustmodel) * (-0.6571)
+</span><span><a class="LN" name="321">  321   </a>                         + (-0.00592) * bh_f14_B-&gt;Wgustmodel)) + (-6.8847) *
+</span><span><a class="LN" name="322">  322   </a>      rtb_Actuator;
+</span><span><a class="LN" name="323">  323   </a>    <span class="KW">if</span> (rtmIsMajorTimeStep(bh_f14_M) &amp;&amp;
+</span><span><a class="LN" name="324">  324   </a>        bh_f14_M-&gt;Timing.TaskCounters.TID[2] == 0) <b>{</b>
+</span><span><a class="LN" name="325">  325   </a>      <span class="CT">/* Gain: '<a href="matlab:coder.internal.code2model('bh_f14:34:1')" name="code2model"><font color="#117755"><i>&lt;S5&gt;/Output</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="326">  326   </a><span class="CT">       *  RandomNumber: '<a href="matlab:coder.internal.code2model('bh_f14:34:2')" name="code2model"><font color="#117755"><i>&lt;S5&gt;/White Noise</i></font></a>'</span>
+</span><span><a class="LN" name="327">  327   </a><span class="CT">       */</span>
+</span><span><a class="LN" name="328">  328   </a>      bh_f14_B-&gt;Output = 3.1622776601683791 * bh_f14_DW-&gt;NextOutput;
+</span><span><a class="LN" name="329">  329   </a>    <b>}</b>
+</span><span><a class="LN" name="330">  330   </a>  <b>}</b>
+</span><span><a class="LN" name="331">  331   </a>
+</span><span><a class="LN" name="332">  332   </a>  <span class="KW">if</span> (rtmIsMajorTimeStep(bh_f14_M)) <b>{</b>
+</span><span><a class="LN" name="333">  333   </a>    <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *lastU;
+</span><span><a class="LN" name="334">  334   </a>
+</span><span><a class="LN" name="335">  335   </a>    <span class="CT">/* Update for Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:48')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative</i></font></a>' */</span>
+</span><span><a class="LN" name="336">  336   </a>    <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA == (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>)) <b>{</b>
+</span><span><a class="LN" name="337">  337   </a>      bh_f14_DW-&gt;TimeStampA = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="338">  338   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeA;
+</span><span><a class="LN" name="339">  339   </a>    <b>}</b> <span class="KW">else</span> <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampB == (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>)) <b>{</b>
+</span><span><a class="LN" name="340">  340   </a>      bh_f14_DW-&gt;TimeStampB = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="341">  341   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB;
+</span><span><a class="LN" name="342">  342   </a>    <b>}</b> <span class="KW">else</span> <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA &lt; bh_f14_DW-&gt;TimeStampB) <b>{</b>
+</span><span><a class="LN" name="343">  343   </a>      bh_f14_DW-&gt;TimeStampA = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="344">  344   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeA;
+</span><span><a class="LN" name="345">  345   </a>    <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="346">  346   </a>      bh_f14_DW-&gt;TimeStampB = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="347">  347   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB;
+</span><span><a class="LN" name="348">  348   </a>    <b>}</b>
+</span><span><a class="LN" name="349">  349   </a>
+</span><span><a class="LN" name="350">  350   </a>    *lastU = bh_f14_B-&gt;TransferFcn2;
+</span><span><a class="LN" name="351">  351   </a>
+</span><span><a class="LN" name="352">  352   </a>    <span class="CT">/* End of Update for Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:48')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative</i></font></a>' */</span>
+</span><span><a class="LN" name="353">  353   </a>
+</span><span><a class="LN" name="354">  354   </a>    <span class="CT">/* Update for Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:49')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative1</i></font></a>' */</span>
+</span><span><a class="LN" name="355">  355   </a>    <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA_o == (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>)) <b>{</b>
+</span><span><a class="LN" name="356">  356   </a>      bh_f14_DW-&gt;TimeStampA_o = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="357">  357   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeA_i;
+</span><span><a class="LN" name="358">  358   </a>    <b>}</b> <span class="KW">else</span> <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampB_h == (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>)) <b>{</b>
+</span><span><a class="LN" name="359">  359   </a>      bh_f14_DW-&gt;TimeStampB_h = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="360">  360   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB_j;
+</span><span><a class="LN" name="361">  361   </a>    <b>}</b> <span class="KW">else</span> <span class="KW">if</span> (bh_f14_DW-&gt;TimeStampA_o &lt; bh_f14_DW-&gt;TimeStampB_h) <b>{</b>
+</span><span><a class="LN" name="362">  362   </a>      bh_f14_DW-&gt;TimeStampA_o = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="363">  363   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeA_i;
+</span><span><a class="LN" name="364">  364   </a>    <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="365">  365   </a>      bh_f14_DW-&gt;TimeStampB_h = bh_f14_M-&gt;Timing.t[0];
+</span><span><a class="LN" name="366">  366   </a>      lastU = &amp;bh_f14_DW-&gt;LastUAtTimeB_j;
+</span><span><a class="LN" name="367">  367   </a>    <b>}</b>
+</span><span><a class="LN" name="368">  368   </a>
+</span><span><a class="LN" name="369">  369   </a>    *lastU = bh_f14_B-&gt;TransferFcn1;
+</span><span><a class="LN" name="370">  370   </a>
+</span><span><a class="LN" name="371">  371   </a>    <span class="CT">/* End of Update for Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:49')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative1</i></font></a>' */</span>
+</span><span><a class="LN" name="372">  372   </a>    <span class="KW">if</span> (rtmIsMajorTimeStep(bh_f14_M) &amp;&amp;
+</span><span><a class="LN" name="373">  373   </a>        bh_f14_M-&gt;Timing.TaskCounters.TID[2] == 0) <b>{</b>
+</span><span><a class="LN" name="374">  374   </a>      <span class="CT">/* Update for RandomNumber: '<a href="matlab:coder.internal.code2model('bh_f14:34:2')" name="code2model"><font color="#117755"><i>&lt;S5&gt;/White Noise</i></font></a>' */</span>
+</span><span><a class="LN" name="375">  375   </a>      bh_f14_DW-&gt;NextOutput = <a href="#fcn_rt_nrand_Upu32_Yd_f_pw_snf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rt_nrand_Upu32_Yd_f_pw_snf');" target="_self"><font color="#1122aa">rt_nrand_Upu32_Yd_f_pw_snf</font></a>(&amp;bh_f14_DW-&gt;RandSeed) *
+</span><span><a class="LN" name="376">  376   </a>        1.0 + 0.0;
+</span><span><a class="LN" name="377">  377   </a>    <b>}</b>
+</span><span><a class="LN" name="378">  378   </a>  <b>}</b>                                    <span class="CT">/* end MajorTimeStep */</span>
+</span><span><a class="LN" name="379">  379   </a>
+</span><span><a class="LN" name="380">  380   </a>  <span class="KW">if</span> (rtmIsMajorTimeStep(bh_f14_M)) <b>{</b>
+</span><span><a class="LN" name="381">  381   </a>    <a href="#fcn_rt_ertODEUpdateContinuousStates" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rt_ertODEUpdateContinuousStates');" target="_self"><font color="#1122aa">rt_ertODEUpdateContinuousStates</font></a>(&amp;bh_f14_M-&gt;solverInfo, bh_f14_M, bh_f14_U_u,
+</span><span><a class="LN" name="382">  382   </a>      bh_f14_Y_alpharad, bh_f14_Y_NzPilotg);
+</span><span><a class="LN" name="383">  383   </a>
+</span><span><a class="LN" name="384">  384   </a>    <span class="CT">/* Update absolute time for base rate */</span>
+</span><span><a class="LN" name="385">  385   </a>    <span class="CT">/* The "clockTick0" counts the number of times the code of this task has</span>
+</span><span><a class="LN" name="386">  386   </a><span class="CT">     * been executed. The absolute time is the multiplication of "clockTick0"</span>
+</span><span><a class="LN" name="387">  387   </a><span class="CT">     * and "Timing.stepSize0". Size of "clockTick0" ensures timer will not</span>
+</span><span><a class="LN" name="388">  388   </a><span class="CT">     * overflow during the application lifespan selected.</span>
+</span><span><a class="LN" name="389">  389   </a><span class="CT">     */</span>
+</span><span><a class="LN" name="390">  390   </a>    ++bh_f14_M-&gt;Timing.clockTick0;
+</span><span><a class="LN" name="391">  391   </a>    bh_f14_M-&gt;Timing.t[0] = rtsiGetSolverStopTime(&amp;bh_f14_M-&gt;solverInfo);
+</span><span><a class="LN" name="392">  392   </a>
+</span><span><a class="LN" name="393">  393   </a>    <b>{</b>
+</span><span><a class="LN" name="394">  394   </a>      <span class="CT">/* Update absolute timer for sample time: [0.01s, 0.0s] */</span>
+</span><span><a class="LN" name="395">  395   </a>      <span class="CT">/* The "clockTick1" counts the number of times the code of this task has</span>
+</span><span><a class="LN" name="396">  396   </a><span class="CT">       * been executed. The resolution of this integer timer is 0.01, which is the step size</span>
+</span><span><a class="LN" name="397">  397   </a><span class="CT">       * of the task. Size of "clockTick1" ensures timer will not overflow during the</span>
+</span><span><a class="LN" name="398">  398   </a><span class="CT">       * application lifespan selected.</span>
+</span><span><a class="LN" name="399">  399   </a><span class="CT">       */</span>
+</span><span><a class="LN" name="400">  400   </a>      bh_f14_M-&gt;Timing.clockTick1++;
+</span><span><a class="LN" name="401">  401   </a>    <b>}</b>
+</span><span><a class="LN" name="402">  402   </a>
+</span><span><a class="LN" name="403">  403   </a>    <a href="#fcn_rate_scheduler" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rate_scheduler');" target="_self"><font color="#1122aa">rate_scheduler</font></a>(bh_f14_M);
+</span><span><a class="LN" name="404">  404   </a>  <b>}</b>                                    <span class="CT">/* end MajorTimeStep */</span>
+</span><span><a class="LN" name="405">  405   </a><b>}</b>
+</span><span><a class="LN" name="406">  406   </a>
+</span><span><a class="LN" name="407">  407   </a><span class="CT">/* Derivatives for root system: '<a href="matlab:coder.internal.code2model('bh_f14')" name="code2model"><font color="#117755"><i>&lt;Root&gt;</i></font></a>' */</span>
+</span><span><a class="LN" name="408">  408   </a><span class="DT">void</span> <a name="fcn_bh_f14_derivatives">bh_f14_derivatives</a>(<a href="bh_f14_types_h.html#type_RT_MODEL_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_RT_MODEL_bh_f14_T');" target="_self"><font color="#1122aa">RT_MODEL_bh_f14_T</font></a> *<span class="DT">const</span> bh_f14_M)
+</span><span><a class="LN" name="409">  409   </a><b>{</b>
+</span><span><a class="LN" name="410">  410   </a>  <a href="bh_f14_h.html#type_B_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_B_bh_f14_T');" target="_self"><font color="#1122aa">B_bh_f14_T</font></a> *bh_f14_B = ((<a href="bh_f14_h.html#type_B_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_B_bh_f14_T');" target="_self"><font color="#1122aa">B_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.blockIO);
+</span><span><a class="LN" name="411">  411   </a>  <a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a> *bh_f14_X = ((<a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.contStates);
+</span><span><a class="LN" name="412">  412   </a>  <a href="bh_f14_h.html#type_XDot_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_XDot_bh_f14_T');" target="_self"><font color="#1122aa">XDot_bh_f14_T</font></a> *_rtXdot;
+</span><span><a class="LN" name="413">  413   </a>  _rtXdot = ((<a href="bh_f14_h.html#type_XDot_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_XDot_bh_f14_T');" target="_self"><font color="#1122aa">XDot_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.derivs);
+</span><span><a class="LN" name="414">  414   </a>
+</span><span><a class="LN" name="415">  415   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:14')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Transfer Fcn.2</i></font></a>' */</span>
+</span><span><a class="LN" name="416">  416   </a>  _rtXdot-&gt;TransferFcn2_CSTATE = 0.0;
+</span><span><a class="LN" name="417">  417   </a>  _rtXdot-&gt;TransferFcn2_CSTATE += (-0.6385) * bh_f14_X-&gt;TransferFcn2_CSTATE;
+</span><span><a class="LN" name="418">  418   </a>  _rtXdot-&gt;TransferFcn2_CSTATE += bh_f14_B-&gt;Sum1_o;
+</span><span><a class="LN" name="419">  419   </a>
+</span><span><a class="LN" name="420">  420   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:13')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Transfer Fcn.1</i></font></a>' */</span>
+</span><span><a class="LN" name="421">  421   </a>  _rtXdot-&gt;TransferFcn1_CSTATE = 0.0;
+</span><span><a class="LN" name="422">  422   </a>  _rtXdot-&gt;TransferFcn1_CSTATE += (-0.6571) * bh_f14_X-&gt;TransferFcn1_CSTATE;
+</span><span><a class="LN" name="423">  423   </a>  _rtXdot-&gt;TransferFcn1_CSTATE += bh_f14_B-&gt;Sum2_h;
+</span><span><a class="LN" name="424">  424   </a>
+</span><span><a class="LN" name="425">  425   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:2')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Actuator</i></font></a>' */</span>
+</span><span><a class="LN" name="426">  426   </a>  _rtXdot-&gt;Actuator_CSTATE = 0.0;
+</span><span><a class="LN" name="427">  427   </a>  _rtXdot-&gt;Actuator_CSTATE += (-20.0) * bh_f14_X-&gt;Actuator_CSTATE;
+</span><span><a class="LN" name="428">  428   </a>  _rtXdot-&gt;Actuator_CSTATE += bh_f14_B-&gt;Sum;
+</span><span><a class="LN" name="429">  429   </a>
+</span><span><a class="LN" name="430">  430   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:22')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Alpha-sensor Low-pass Filter</i></font></a>' */</span>
+</span><span><a class="LN" name="431">  431   </a>  _rtXdot-&gt;AlphasensorLowpassFilter_CSTATE = 0.0;
+</span><span><a class="LN" name="432">  432   </a>  _rtXdot-&gt;AlphasensorLowpassFilter_CSTATE += (-2.5258903763576663) *
+</span><span><a class="LN" name="433">  433   </a>    bh_f14_X-&gt;AlphasensorLowpassFilter_CSTATE;
+</span><span><a class="LN" name="434">  434   </a>  _rtXdot-&gt;AlphasensorLowpassFilter_CSTATE += bh_f14_B-&gt;Gain5;
+</span><span><a class="LN" name="435">  435   </a>
+</span><span><a class="LN" name="436">  436   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:28')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Stick Prefilter</i></font></a>' */</span>
+</span><span><a class="LN" name="437">  437   </a>  _rtXdot-&gt;StickPrefilter_CSTATE = 0.0;
+</span><span><a class="LN" name="438">  438   </a>  _rtXdot-&gt;StickPrefilter_CSTATE += (-10.0) * bh_f14_X-&gt;StickPrefilter_CSTATE;
+</span><span><a class="LN" name="439">  439   </a>  _rtXdot-&gt;StickPrefilter_CSTATE += bh_f14_B-&gt;Sum1;
+</span><span><a class="LN" name="440">  440   </a>
+</span><span><a class="LN" name="441">  441   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:26')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Pitch Rate Lead Filter</i></font></a>' */</span>
+</span><span><a class="LN" name="442">  442   </a>  _rtXdot-&gt;PitchRateLeadFilter_CSTATE = 0.0;
+</span><span><a class="LN" name="443">  443   </a>  _rtXdot-&gt;PitchRateLeadFilter_CSTATE += (-4.144) *
+</span><span><a class="LN" name="444">  444   </a>    bh_f14_X-&gt;PitchRateLeadFilter_CSTATE;
+</span><span><a class="LN" name="445">  445   </a>  _rtXdot-&gt;PitchRateLeadFilter_CSTATE += bh_f14_B-&gt;TransferFcn1;
+</span><span><a class="LN" name="446">  446   </a>
+</span><span><a class="LN" name="447">  447   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:27')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Proportional plus integral compensator</i></font></a>' */</span>
+</span><span><a class="LN" name="448">  448   </a>  _rtXdot-&gt;Proportionalplusintegralcompens = 0.0;
+</span><span><a class="LN" name="449">  449   </a>  _rtXdot-&gt;Proportionalplusintegralcompens += (-0.0) *
+</span><span><a class="LN" name="450">  450   </a>    bh_f14_X-&gt;Proportionalplusintegralcompens;
+</span><span><a class="LN" name="451">  451   </a>  _rtXdot-&gt;Proportionalplusintegralcompens += bh_f14_B-&gt;Sum2;
+</span><span><a class="LN" name="452">  452   </a>
+</span><span><a class="LN" name="453">  453   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:36')" name="code2model"><font color="#117755"><i>&lt;S4&gt;/W-gust model</i></font></a>' */</span>
+</span><span><a class="LN" name="454">  454   </a>  _rtXdot-&gt;Wgustmodel_CSTATE[0] = 0.0;
+</span><span><a class="LN" name="455">  455   </a>  _rtXdot-&gt;Wgustmodel_CSTATE[0] += (-0.78901688496133815) *
+</span><span><a class="LN" name="456">  456   </a>    bh_f14_X-&gt;Wgustmodel_CSTATE[0];
+</span><span><a class="LN" name="457">  457   </a>  _rtXdot-&gt;Wgustmodel_CSTATE[1] = 0.0;
+</span><span><a class="LN" name="458">  458   </a>  _rtXdot-&gt;Wgustmodel_CSTATE[0] += (-0.15563691118852338) *
+</span><span><a class="LN" name="459">  459   </a>    bh_f14_X-&gt;Wgustmodel_CSTATE[1];
+</span><span><a class="LN" name="460">  460   </a>  _rtXdot-&gt;Wgustmodel_CSTATE[1] += bh_f14_X-&gt;Wgustmodel_CSTATE[0];
+</span><span><a class="LN" name="461">  461   </a>  _rtXdot-&gt;Wgustmodel_CSTATE[0] += bh_f14_B-&gt;Output;
+</span><span><a class="LN" name="462">  462   </a>
+</span><span><a class="LN" name="463">  463   </a>  <span class="CT">/* Derivatives for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:35')" name="code2model"><font color="#117755"><i>&lt;S4&gt;/Q-gust model</i></font></a>' */</span>
+</span><span><a class="LN" name="464">  464   </a>  _rtXdot-&gt;Qgustmodel_CSTATE = 0.0;
+</span><span><a class="LN" name="465">  465   </a>  _rtXdot-&gt;Qgustmodel_CSTATE += (-8.4553078435926761) *
+</span><span><a class="LN" name="466">  466   </a>    bh_f14_X-&gt;Qgustmodel_CSTATE;
+</span><span><a class="LN" name="467">  467   </a>  _rtXdot-&gt;Qgustmodel_CSTATE += bh_f14_B-&gt;Wgustmodel;
+</span><span><a class="LN" name="468">  468   </a><b>}</b>
+</span><span><a class="LN" name="469">  469   </a>
+</span><span><a class="LN" name="470">  470   </a><span class="CT">/* Model initialize function */</span>
+</span><span><a class="LN" name="471">  471   </a><span class="DT">void</span> <a name="fcn_bh_f14_initialize">bh_f14_initialize</a>(<a href="bh_f14_types_h.html#type_RT_MODEL_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_RT_MODEL_bh_f14_T');" target="_self"><font color="#1122aa">RT_MODEL_bh_f14_T</font></a> *<span class="DT">const</span> bh_f14_M, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *bh_f14_U_u,
+</span><span><a class="LN" name="472">  472   </a>  <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *bh_f14_Y_alpharad, <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> *bh_f14_Y_NzPilotg)
+</span><span><a class="LN" name="473">  473   </a><b>{</b>
+</span><span><a class="LN" name="474">  474   </a>  <a href="bh_f14_h.html#type_DW_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_DW_bh_f14_T');" target="_self"><font color="#1122aa">DW_bh_f14_T</font></a> *bh_f14_DW = ((<a href="bh_f14_h.html#type_DW_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_DW_bh_f14_T');" target="_self"><font color="#1122aa">DW_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.dwork);
+</span><span><a class="LN" name="475">  475   </a>  <a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a> *bh_f14_X = ((<a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.contStates);
+</span><span><a class="LN" name="476">  476   </a>  <a href="bh_f14_h.html#type_B_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_B_bh_f14_T');" target="_self"><font color="#1122aa">B_bh_f14_T</font></a> *bh_f14_B = ((<a href="bh_f14_h.html#type_B_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_B_bh_f14_T');" target="_self"><font color="#1122aa">B_bh_f14_T</font></a> *) bh_f14_M-&gt;ModelData.blockIO);
+</span><span><a class="LN" name="477">  477   </a>
+</span><span><a class="LN" name="478">  478   </a>  <span class="CT">/* Registration code */</span>
+</span><span><a class="LN" name="479">  479   </a>
+</span><span><a class="LN" name="480">  480   </a>  <span class="CT">/* initialize non-finites */</span>
+</span><span><a class="LN" name="481">  481   </a>  <a href="rt_nonfinite_c.html#fcn_rt_InitInfAndNaN" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rt_InitInfAndNaN');" target="_self"><font color="#1122aa">rt_InitInfAndNaN</font></a>(<span class="KW">sizeof</span>(<a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a>));
+</span><span><a class="LN" name="482">  482   </a>
+</span><span><a class="LN" name="483">  483   </a>  <b>{</b>
+</span><span><a class="LN" name="484">  484   </a>    <span class="CT">/* Setup solver object */</span>
+</span><span><a class="LN" name="485">  485   </a>    rtsiSetSimTimeStepPtr(&amp;bh_f14_M-&gt;solverInfo, &amp;bh_f14_M-&gt;Timing.simTimeStep);
+</span><span><a class="LN" name="486">  486   </a>    rtsiSetTPtr(&amp;bh_f14_M-&gt;solverInfo, &amp;rtmGetTPtr(bh_f14_M));
+</span><span><a class="LN" name="487">  487   </a>    rtsiSetStepSizePtr(&amp;bh_f14_M-&gt;solverInfo, &amp;bh_f14_M-&gt;Timing.stepSize0);
+</span><span><a class="LN" name="488">  488   </a>    rtsiSetdXPtr(&amp;bh_f14_M-&gt;solverInfo, &amp;bh_f14_M-&gt;ModelData.derivs);
+</span><span><a class="LN" name="489">  489   </a>    rtsiSetContStatesPtr(&amp;bh_f14_M-&gt;solverInfo, (<a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> **)
+</span><span><a class="LN" name="490">  490   </a>                         &amp;bh_f14_M-&gt;ModelData.contStates);
+</span><span><a class="LN" name="491">  491   </a>    rtsiSetNumContStatesPtr(&amp;bh_f14_M-&gt;solverInfo,
+</span><span><a class="LN" name="492">  492   </a>      &amp;bh_f14_M-&gt;Sizes.numContStates);
+</span><span><a class="LN" name="493">  493   </a>    rtsiSetNumPeriodicContStatesPtr(&amp;bh_f14_M-&gt;solverInfo,
+</span><span><a class="LN" name="494">  494   </a>      &amp;bh_f14_M-&gt;Sizes.numPeriodicContStates);
+</span><span><a class="LN" name="495">  495   </a>    rtsiSetPeriodicContStateIndicesPtr(&amp;bh_f14_M-&gt;solverInfo,
+</span><span><a class="LN" name="496">  496   </a>      &amp;bh_f14_M-&gt;ModelData.periodicContStateIndices);
+</span><span><a class="LN" name="497">  497   </a>    rtsiSetPeriodicContStateRangesPtr(&amp;bh_f14_M-&gt;solverInfo,
+</span><span><a class="LN" name="498">  498   </a>      &amp;bh_f14_M-&gt;ModelData.periodicContStateRanges);
+</span><span><a class="LN" name="499">  499   </a>    rtsiSetErrorStatusPtr(&amp;bh_f14_M-&gt;solverInfo, (&amp;rtmGetErrorStatus(bh_f14_M)));
+</span><span><a class="LN" name="500">  500   </a>    rtsiSetRTModelPtr(&amp;bh_f14_M-&gt;solverInfo, bh_f14_M);
+</span><span><a class="LN" name="501">  501   </a>  <b>}</b>
+</span><span><a class="LN" name="502">  502   </a>
+</span><span><a class="LN" name="503">  503   </a>  rtsiSetSimTimeStep(&amp;bh_f14_M-&gt;solverInfo, MAJOR_TIME_STEP);
+</span><span><a class="LN" name="504">  504   </a>  bh_f14_M-&gt;ModelData.intgData.y = bh_f14_M-&gt;ModelData.odeY;
+</span><span><a class="LN" name="505">  505   </a>  bh_f14_M-&gt;ModelData.intgData.f[0] = bh_f14_M-&gt;ModelData.odeF[0];
+</span><span><a class="LN" name="506">  506   </a>  bh_f14_M-&gt;ModelData.intgData.f[1] = bh_f14_M-&gt;ModelData.odeF[1];
+</span><span><a class="LN" name="507">  507   </a>  bh_f14_M-&gt;ModelData.intgData.f[2] = bh_f14_M-&gt;ModelData.odeF[2];
+</span><span><a class="LN" name="508">  508   </a>  bh_f14_M-&gt;ModelData.intgData.f[3] = bh_f14_M-&gt;ModelData.odeF[3];
+</span><span><a class="LN" name="509">  509   </a>  bh_f14_M-&gt;ModelData.contStates = ((<a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a> *) bh_f14_X);
+</span><span><a class="LN" name="510">  510   </a>  rtsiSetSolverData(&amp;bh_f14_M-&gt;solverInfo, (<span class="DT">void</span> *)&amp;bh_f14_M-&gt;ModelData.intgData);
+</span><span><a class="LN" name="511">  511   </a>  rtsiSetSolverName(&amp;bh_f14_M-&gt;solverInfo,<font color="#1122ff">&quot;ode4&quot;</font>);
+</span><span><a class="LN" name="512">  512   </a>  rtmSetTPtr(bh_f14_M, &amp;bh_f14_M-&gt;Timing.tArray[0]);
+</span><span><a class="LN" name="513">  513   </a>  bh_f14_M-&gt;Timing.stepSize0 = 0.01;
+</span><span><a class="LN" name="514">  514   </a>
+</span><span><a class="LN" name="515">  515   </a>  <span class="CT">/* block I/O */</span>
+</span><span><a class="LN" name="516">  516   </a>  <b>{</b>
+</span><span><a class="LN" name="517">  517   </a>    bh_f14_B-&gt;TransferFcn2 = 0.0;
+</span><span><a class="LN" name="518">  518   </a>    bh_f14_B-&gt;Gain5 = 0.0;
+</span><span><a class="LN" name="519">  519   </a>    bh_f14_B-&gt;TransferFcn1 = 0.0;
+</span><span><a class="LN" name="520">  520   </a>    bh_f14_B-&gt;Gain2 = 0.0;
+</span><span><a class="LN" name="521">  521   </a>    bh_f14_B-&gt;Sum1 = 0.0;
+</span><span><a class="LN" name="522">  522   </a>    bh_f14_B-&gt;Sum2 = 0.0;
+</span><span><a class="LN" name="523">  523   </a>    bh_f14_B-&gt;Sum = 0.0;
+</span><span><a class="LN" name="524">  524   </a>    bh_f14_B-&gt;Wgustmodel = 0.0;
+</span><span><a class="LN" name="525">  525   </a>    bh_f14_B-&gt;Sum1_o = 0.0;
+</span><span><a class="LN" name="526">  526   </a>    bh_f14_B-&gt;Sum2_h = 0.0;
+</span><span><a class="LN" name="527">  527   </a>    bh_f14_B-&gt;Output = 0.0;
+</span><span><a class="LN" name="528">  528   </a>  <b>}</b>
+</span><span><a class="LN" name="529">  529   </a>
+</span><span><a class="LN" name="530">  530   </a>  <span class="CT">/* states (continuous) */</span>
+</span><span><a class="LN" name="531">  531   </a>  <b>{</b>
+</span><span><a class="LN" name="532">  532   </a>    (<span class="DT">void</span>) memset((<span class="DT">void</span> *)bh_f14_X, 0,
+</span><span><a class="LN" name="533">  533   </a>                  <span class="KW">sizeof</span>(<a href="bh_f14_h.html#type_X_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_X_bh_f14_T');" target="_self"><font color="#1122aa">X_bh_f14_T</font></a>));
+</span><span><a class="LN" name="534">  534   </a>  <b>}</b>
+</span><span><a class="LN" name="535">  535   </a>
+</span><span><a class="LN" name="536">  536   </a>  <span class="CT">/* states (dwork) */</span>
+</span><span><a class="LN" name="537">  537   </a>  (<span class="DT">void</span>) memset((<span class="DT">void</span> *)bh_f14_DW, 0,
+</span><span><a class="LN" name="538">  538   </a>                <span class="KW">sizeof</span>(<a href="bh_f14_h.html#type_DW_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_DW_bh_f14_T');" target="_self"><font color="#1122aa">DW_bh_f14_T</font></a>));
+</span><span><a class="LN" name="539">  539   </a>  bh_f14_DW-&gt;TimeStampA = 0.0;
+</span><span><a class="LN" name="540">  540   </a>  bh_f14_DW-&gt;LastUAtTimeA = 0.0;
+</span><span><a class="LN" name="541">  541   </a>  bh_f14_DW-&gt;TimeStampB = 0.0;
+</span><span><a class="LN" name="542">  542   </a>  bh_f14_DW-&gt;LastUAtTimeB = 0.0;
+</span><span><a class="LN" name="543">  543   </a>  bh_f14_DW-&gt;TimeStampA_o = 0.0;
+</span><span><a class="LN" name="544">  544   </a>  bh_f14_DW-&gt;LastUAtTimeA_i = 0.0;
+</span><span><a class="LN" name="545">  545   </a>  bh_f14_DW-&gt;TimeStampB_h = 0.0;
+</span><span><a class="LN" name="546">  546   </a>  bh_f14_DW-&gt;LastUAtTimeB_j = 0.0;
+</span><span><a class="LN" name="547">  547   </a>  bh_f14_DW-&gt;NextOutput = 0.0;
+</span><span><a class="LN" name="548">  548   </a>
+</span><span><a class="LN" name="549">  549   </a>  <span class="CT">/* external inputs */</span>
+</span><span><a class="LN" name="550">  550   </a>  (*bh_f14_U_u) = 0.0;
+</span><span><a class="LN" name="551">  551   </a>
+</span><span><a class="LN" name="552">  552   </a>  <span class="CT">/* external outputs */</span>
+</span><span><a class="LN" name="553">  553   </a>  (*bh_f14_Y_alpharad) = 0.0;
+</span><span><a class="LN" name="554">  554   </a>  (*bh_f14_Y_NzPilotg) = 0.0;
+</span><span><a class="LN" name="555">  555   </a>
+</span><span><a class="LN" name="556">  556   </a>  <b>{</b>
+</span><span><a class="LN" name="557">  557   </a>    <a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a> tseed;
+</span><span><a class="LN" name="558">  558   </a>    <a href="rtwtypes_h.html#type_int32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_int32_T');" target="_self"><font color="#1122aa">int32_T</font></a> r;
+</span><span><a class="LN" name="559">  559   </a>    <a href="rtwtypes_h.html#type_int32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_int32_T');" target="_self"><font color="#1122aa">int32_T</font></a> t;
+</span><span><a class="LN" name="560">  560   </a>    <a href="rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="_self"><font color="#1122aa">real_T</font></a> tmp;
+</span><span><a class="LN" name="561">  561   </a>
+</span><span><a class="LN" name="562">  562   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:14')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Transfer Fcn.2</i></font></a>' */</span>
+</span><span><a class="LN" name="563">  563   </a>    bh_f14_X-&gt;TransferFcn2_CSTATE = 0.0;
+</span><span><a class="LN" name="564">  564   </a>
+</span><span><a class="LN" name="565">  565   </a>    <span class="CT">/* InitializeConditions for Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:48')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative</i></font></a>' */</span>
+</span><span><a class="LN" name="566">  566   </a>    bh_f14_DW-&gt;TimeStampA = (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>);
+</span><span><a class="LN" name="567">  567   </a>    bh_f14_DW-&gt;TimeStampB = (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>);
+</span><span><a class="LN" name="568">  568   </a>
+</span><span><a class="LN" name="569">  569   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:13')" name="code2model"><font color="#117755"><i>&lt;S3&gt;/Transfer Fcn.1</i></font></a>' */</span>
+</span><span><a class="LN" name="570">  570   </a>    bh_f14_X-&gt;TransferFcn1_CSTATE = 0.0;
+</span><span><a class="LN" name="571">  571   </a>
+</span><span><a class="LN" name="572">  572   </a>    <span class="CT">/* InitializeConditions for Derivative: '<a href="matlab:coder.internal.code2model('bh_f14:49')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Derivative1</i></font></a>' */</span>
+</span><span><a class="LN" name="573">  573   </a>    bh_f14_DW-&gt;TimeStampA_o = (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>);
+</span><span><a class="LN" name="574">  574   </a>    bh_f14_DW-&gt;TimeStampB_h = (<a href="rt_nonfinite_c.html#var_rtInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtInf');" target="_self"><font color="#1122aa">rtInf</font></a>);
+</span><span><a class="LN" name="575">  575   </a>
+</span><span><a class="LN" name="576">  576   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:2')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Actuator</i></font></a>' */</span>
+</span><span><a class="LN" name="577">  577   </a>    bh_f14_X-&gt;Actuator_CSTATE = 0.0;
+</span><span><a class="LN" name="578">  578   </a>
+</span><span><a class="LN" name="579">  579   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:22')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Alpha-sensor Low-pass Filter</i></font></a>' */</span>
+</span><span><a class="LN" name="580">  580   </a>    bh_f14_X-&gt;AlphasensorLowpassFilter_CSTATE = 0.0;
+</span><span><a class="LN" name="581">  581   </a>
+</span><span><a class="LN" name="582">  582   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:28')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Stick Prefilter</i></font></a>' */</span>
+</span><span><a class="LN" name="583">  583   </a>    bh_f14_X-&gt;StickPrefilter_CSTATE = 0.0;
+</span><span><a class="LN" name="584">  584   </a>
+</span><span><a class="LN" name="585">  585   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:26')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Pitch Rate Lead Filter</i></font></a>' */</span>
+</span><span><a class="LN" name="586">  586   </a>    bh_f14_X-&gt;PitchRateLeadFilter_CSTATE = 0.0;
+</span><span><a class="LN" name="587">  587   </a>
+</span><span><a class="LN" name="588">  588   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:27')" name="code2model"><font color="#117755"><i>&lt;S1&gt;/Proportional plus integral compensator</i></font></a>' */</span>
+</span><span><a class="LN" name="589">  589   </a>    bh_f14_X-&gt;Proportionalplusintegralcompens = 0.0;
+</span><span><a class="LN" name="590">  590   </a>
+</span><span><a class="LN" name="591">  591   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:36')" name="code2model"><font color="#117755"><i>&lt;S4&gt;/W-gust model</i></font></a>' */</span>
+</span><span><a class="LN" name="592">  592   </a>    bh_f14_X-&gt;Wgustmodel_CSTATE[0] = 0.0;
+</span><span><a class="LN" name="593">  593   </a>    bh_f14_X-&gt;Wgustmodel_CSTATE[1] = 0.0;
+</span><span><a class="LN" name="594">  594   </a>
+</span><span><a class="LN" name="595">  595   </a>    <span class="CT">/* InitializeConditions for TransferFcn: '<a href="matlab:coder.internal.code2model('bh_f14:35')" name="code2model"><font color="#117755"><i>&lt;S4&gt;/Q-gust model</i></font></a>' */</span>
+</span><span><a class="LN" name="596">  596   </a>    bh_f14_X-&gt;Qgustmodel_CSTATE = 0.0;
+</span><span><a class="LN" name="597">  597   </a>
+</span><span><a class="LN" name="598">  598   </a>    <span class="CT">/* InitializeConditions for RandomNumber: '<a href="matlab:coder.internal.code2model('bh_f14:34:2')" name="code2model"><font color="#117755"><i>&lt;S5&gt;/White Noise</i></font></a>' */</span>
+</span><span><a class="LN" name="599">  599   </a>    tmp = floor(23341.0);
+</span><span><a class="LN" name="600">  600   </a>    <span class="KW">if</span> (<a href="rt_nonfinite_c.html#fcn_rtIsNaN" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rtIsNaN');" target="_self"><font color="#1122aa">rtIsNaN</font></a>(tmp) || <a href="rt_nonfinite_c.html#fcn_rtIsInf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rtIsInf');" target="_self"><font color="#1122aa">rtIsInf</font></a>(tmp)) <b>{</b>
+</span><span><a class="LN" name="601">  601   </a>      tmp = 0.0;
+</span><span><a class="LN" name="602">  602   </a>    <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="603">  603   </a>      tmp = fmod(tmp, 4.294967296E+9);
+</span><span><a class="LN" name="604">  604   </a>    <b>}</b>
+</span><span><a class="LN" name="605">  605   </a>
+</span><span><a class="LN" name="606">  606   </a>    tseed = tmp &lt; 0.0 ? (<a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a>)-(<a href="rtwtypes_h.html#type_int32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_int32_T');" target="_self"><font color="#1122aa">int32_T</font></a>)(<a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a>)-tmp : (<a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a>)tmp;
+</span><span><a class="LN" name="607">  607   </a>    r = (<a href="rtwtypes_h.html#type_int32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_int32_T');" target="_self"><font color="#1122aa">int32_T</font></a>)(tseed &gt;&gt; 16U);
+</span><span><a class="LN" name="608">  608   </a>    t = (<a href="rtwtypes_h.html#type_int32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_int32_T');" target="_self"><font color="#1122aa">int32_T</font></a>)(tseed &amp; 32768U);
+</span><span><a class="LN" name="609">  609   </a>    tseed = ((((tseed - ((<a href="rtwtypes_h.html#type_uint32_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_uint32_T');" target="_self"><font color="#1122aa">uint32_T</font></a>)r &lt;&lt; 16U)) + t) &lt;&lt; 16U) + t) + r;
+</span><span><a class="LN" name="610">  610   </a>    <span class="KW">if</span> (tseed &lt; 1U) <b>{</b>
+</span><span><a class="LN" name="611">  611   </a>      tseed = 1144108930U;
+</span><span><a class="LN" name="612">  612   </a>    <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="613">  613   </a>      <span class="KW">if</span> (tseed &gt; 2147483646U) <b>{</b>
+</span><span><a class="LN" name="614">  614   </a>        tseed = 2147483646U;
+</span><span><a class="LN" name="615">  615   </a>      <b>}</b>
+</span><span><a class="LN" name="616">  616   </a>    <b>}</b>
+</span><span><a class="LN" name="617">  617   </a>
+</span><span><a class="LN" name="618">  618   </a>    bh_f14_DW-&gt;RandSeed = tseed;
+</span><span><a class="LN" name="619">  619   </a>    bh_f14_DW-&gt;NextOutput = <a href="#fcn_rt_nrand_Upu32_Yd_f_pw_snf" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rt_nrand_Upu32_Yd_f_pw_snf');" target="_self"><font color="#1122aa">rt_nrand_Upu32_Yd_f_pw_snf</font></a>(&amp;bh_f14_DW-&gt;RandSeed) *
+</span><span><a class="LN" name="620">  620   </a>      1.0 + 0.0;
+</span><span><a class="LN" name="621">  621   </a>
+</span><span><a class="LN" name="622">  622   </a>    <span class="CT">/* End of InitializeConditions for RandomNumber: '<a href="matlab:coder.internal.code2model('bh_f14:34:2')" name="code2model"><font color="#117755"><i>&lt;S5&gt;/White Noise</i></font></a>' */</span>
+</span><span><a class="LN" name="623">  623   </a>  <b>}</b>
+</span><span><a class="LN" name="624">  624   </a><b>}</b>
+</span><span><a class="LN" name="625">  625   </a>
+</span><span><a class="LN" name="626">  626   </a><span class="CT">/* Model terminate function */</span>
+</span><span><a class="LN" name="627">  627   </a><span class="DT">void</span> <a name="fcn_bh_f14_terminate">bh_f14_terminate</a>(<a href="bh_f14_types_h.html#type_RT_MODEL_bh_f14_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_RT_MODEL_bh_f14_T');" target="_self"><font color="#1122aa">RT_MODEL_bh_f14_T</font></a> *<span class="DT">const</span> bh_f14_M)
+</span><span><a class="LN" name="628">  628   </a><b>{</b>
+</span><span><a class="LN" name="629">  629   </a>  <span class="CT">/* (no terminate code required) */</span>
+</span><span><a class="LN" name="630">  630   </a>  UNUSED_PARAMETER(bh_f14_M);
+</span><span><a class="LN" name="631">  631   </a><b>}</b>
+</span><span><a class="LN" name="632">  632   </a>
+</span><span><a class="LN" name="633">  633   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="634">  634   </a><span class="CT"> * File trailer for generated code.</span>
+</span><span><a class="LN" name="635">  635   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="636">  636   </a><span class="CT"> * [EOF]</span>
+</span><span><a class="LN" name="637">  637   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="638">  638   </a>
+</span></pre>
+</td></tr></table>
+</p>
+</body>
+</html>

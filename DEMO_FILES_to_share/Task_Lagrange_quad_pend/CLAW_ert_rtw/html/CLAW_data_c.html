@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>RTW Report - CLAW_data.c</title>
+<link rel="stylesheet" type="text/css" href="rtwreport.css"></link><script language="JavaScript" type="text/javascript" src="rtwreport_utils.js"></script>
+<SCRIPT type="text/javascript" language="JavaScript" src="slwebview.js"></SCRIPT>
+<SCRIPT type="text/javascript" language="JavaScript" src="id_mapping.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="rtwannotate.js"></SCRIPT>
+</head>
+<body bgcolor="#eeeeee" onload="try {if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window.document); else local_onload();}} catch(err) {};if (typeof rtwannotate === 'function') {rtwannotate('CLAW_data_c_cov.xml');}">
+<p>
+<table border="0" cellspacing="0" cellpadding="6" width="100%%" height="100%%"><tr><td width="100%%" valign="top" bgcolor="#ffffff">
+<h4>File: <a href="../CLAW_data.c" target="rtwreport_document_frame" id="linkToText_plain">CLAW_data.c</a></h4>
+<pre id="RTWcode">
+<span><a class="LN" name="1">    1   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="2">    2   </a><span class="CT"> * File: CLAW_data.c</span>
+</span><span><a class="LN" name="3">    3   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="4">    4   </a><span class="CT"> * Code generated for Simulink model 'CLAW'.</span>
+</span><span><a class="LN" name="5">    5   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="6">    6   </a><span class="CT"> * Model version                  : 1.573</span>
+</span><span><a class="LN" name="7">    7   </a><span class="CT"> * Simulink Coder version         : 9.0 (R2018b) 24-May-2018</span>
+</span><span><a class="LN" name="8">    8   </a><span class="CT"> * C/C++ source code generated on : Mon Apr 15 15:53:22 2019</span>
+</span><span><a class="LN" name="9">    9   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="10">   10   </a><span class="CT"> * Target selection: ert.tlc</span>
+</span><span><a class="LN" name="11">   11   </a><span class="CT"> * Embedded hardware selection: Intel-&gt;x86-64 (Windows64)</span>
+</span><span><a class="LN" name="12">   12   </a><span class="CT"> * Code generation objective: Traceability</span>
+</span><span><a class="LN" name="13">   13   </a><span class="CT"> * Validation result: Not run</span>
+</span><span><a class="LN" name="14">   14   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="15">   15   </a>
+</span><span><a class="LN" name="16">   16   </a><font color="#992211">#</font><span class="PP">include</span> <font color="#992211">&quot;CLAW.h&quot;</font>
+</span><span><a class="LN" name="17">   17   </a><font color="#992211">#</font><span class="PP">include</span> <font color="#992211">&quot;CLAW_private.h&quot;</font>
+</span><span><a class="LN" name="18">   18   </a>
+</span><span><a class="LN" name="19">   19   </a><span class="CT">/* Invariant block signals (default storage) */</span>
+</span><span><a class="LN" name="20">   20   </a><span class="DT">const</span> <a href="CLAW_h.html#type_ConstB_CLAW_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_ConstB_CLAW_T');" target="_self"><font color="#1122aa">ConstB_CLAW_T</font></a> <a name="var_CLAW_ConstB">CLAW_ConstB</a> = <b>{</b>
+</span><span><a class="LN" name="21">   21   </a>  11.548332,                           <span class="CT">/* '<a href="matlab:coder.internal.code2model('bh_SM_quad_and_PEND_discrete_CONT:3898')" name="code2model"><font color="#117755"><i>&lt;S4&gt;/Gain</i></font></a>' */</span>
+</span><span><a class="LN" name="22">   22   </a>
+</span><span><a class="LN" name="23">   23   </a>  <b>{</b> 0.00019302243843765754, -0.00028551008184115164, -0.00053107404633296208,
+</span><span><a class="LN" name="24">   24   </a>    -0.0055634238577346243, 1.4365380431461726E-10, -9.85700605750203E-13,
+</span><span><a class="LN" name="25">   25   </a>    0.080059824585309344, -6.8715104111796961E-13, -5.2738824738073017E-11,
+</span><span><a class="LN" name="26">   26   </a>    0.080059824531354934, -5.8413679713735783E-11, 7.8187547116848457E-12,
+</span><span><a class="LN" name="27">   27   </a>    3.003932822724753E-11, -1.8974609100236022E-12, 0.01618969773098208,
+</span><span><a class="LN" name="28">   28   </a>    -1.552978042848502E-13, 1.0684689741819557E-11, -0.016189697721395696,
+</span><span><a class="LN" name="29">   29   </a>    1.4835973138860024E-11, -1.7743394190996302E-12, -1.2281013745623646,
+</span><span><a class="LN" name="30">   30   </a>    6.2070256157732909E-9, -1.1176810292232164E-8, 1.7910230896528557E-10,
+</span><span><a class="LN" name="31">   31   </a>    0.00019302244247022268, -0.00028551007322744244, -0.00053107404680355233,
+</span><span><a class="LN" name="32">   32   </a>    0.0056293097909667139, 1.889640148202061E-10, -2.1862396526845452E-11,
+</span><span><a class="LN" name="33">   33   </a>    0.18793672726229466, -8.3394125878286086E-13, -8.1186710637535647E-11,
+</span><span><a class="LN" name="34">   34   </a>    0.18793672717114798, -7.27619310750234E-11, 1.1044751735102288E-11,
+</span><span><a class="LN" name="35">   35   </a>    1.5189277563619014E-7, -2.2465479909829077E-7, -4.1778787439559578E-7,
+</span><span><a class="LN" name="36">   36   </a>    -0.0019983369393341823, 2.4758941152420976E-10, -9.7315368760428075E-12,
+</span><span><a class="LN" name="37">   37   </a>    0.13998660749365288, -1.3271924247633079E-12, -9.3188393611666989E-11,
+</span><span><a class="LN" name="38">   38   </a>    0.13998660740530336, -1.1588924105890001E-10, 1.4389117555665692E-11,
+</span><span><a class="LN" name="39">   39   </a>    2.1139535849953748E-11, -1.8122948871666357E-12, 0.010859410721278015,
+</span><span><a class="LN" name="40">   40   </a>    -1.0553948523080433E-13, 7.13567541805023E-12, -0.010859410715139206,
+</span><span><a class="LN" name="41">   41   </a>    1.0887238562148748E-11, -1.2613258384166135E-12, -0.64093276983305836,
+</span><span><a class="LN" name="42">   42   </a>    3.2364187377227826E-9, -5.5300797856533947E-9, 1.5072986274238011E-10,
+</span><span><a class="LN" name="43">   43   </a>    1.5189390156665126E-7, -2.2465185614471611E-7, -4.1778765671415789E-7,
+</span><span><a class="LN" name="44">   44   </a>    0.0019983887560992837, 1.1135430033728047E-9, -1.5020912405224416E-10,
+</span><span><a class="LN" name="45">   45   </a>    1.1892369022261495, -4.8710544614819015E-12, -4.908334648039408E-10,
+</span><span><a class="LN" name="46">   46   </a>    1.1892369016692736, -4.2693458548096685E-10, 6.59707258690681E-11,
+</span><span><a class="LN" name="47">   47   </a>    -6.734967981541337E-12, 7.4948819542150032E-13, -0.0034015255250802678,
+</span><span><a class="LN" name="48">   48   </a>    3.2960989473596404E-14, -2.1332539045454127E-12, 0.0034015255233393691,
+</span><span><a class="LN" name="49">   49   </a>    -3.7107836201635656E-12, 4.1725046295749664E-13, 0.16715743799932348,
+</span><span><a class="LN" name="50">   50   </a>    -8.4212156221498527E-10, 1.3705100313184609E-9, -4.97231312207286E-11 <b>}</b>,<span class="CT">/* '<a href="matlab:coder.internal.code2model('bh_SM_quad_and_PEND_discrete_CONT:3389')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Gain1</i></font></a>' */</span>
+</span><span><a class="LN" name="51">   51   </a>
+</span><span><a class="LN" name="52">   52   </a>  <b>{</b> 0.0, 0.0, 0.0 <b>}</b>                    <span class="CT">/* '<a href="matlab:coder.internal.code2model('bh_SM_quad_and_PEND_discrete_CONT:3372')" name="code2model"><font color="#117755"><i>&lt;S2&gt;/Constant1</i></font></a>' */</span>
+</span><span><a class="LN" name="53">   53   </a><b>}</b>;
+</span><span><a class="LN" name="54">   54   </a>
+</span><span><a class="LN" name="55">   55   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="56">   56   </a><span class="CT"> * File trailer for generated code.</span>
+</span><span><a class="LN" name="57">   57   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="58">   58   </a><span class="CT"> * [EOF]</span>
+</span><span><a class="LN" name="59">   59   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="60">   60   </a>
+</span></pre>
+</td></tr></table>
+</p>
+</body>
+</html>
